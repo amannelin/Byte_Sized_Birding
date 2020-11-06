@@ -29,3 +29,5 @@ for bird in bird_data:
 
     db_bird = crud.create_bird(bird_id, scientific_name, common_name, photo_1, song_1, ebird_page)
     birds_in_db.append(db_bird)
+
+locations

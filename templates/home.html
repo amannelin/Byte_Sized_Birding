@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}Birding List{% endblock %}
 {% block head %}
-    
+<title>Geocoding Service</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyKkTUiF1et9EtNjBxCHYAOAk7sWF21gM&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
+    <script src="static/js/index.js"></script>
 {% endblock %}
 {% block body %}
 <h1>Who's Flying Your Way?</h1>
 <h3>Enter An Address To See The Ten Most Recent Birds Spotted Nearby:</h3>
-<div id="floating-panel">
-    <input id="address" type="textbox" value="Sydney, NSW" />
-    <input id="submit" type="button" value="Geocode" />
+  <div></div>
+  <div id="get birds"></div>
+  <div id="floating-panel">
+    <input id="address" type="textbox"/>
+    <input id="submit" type="button" value="Search For Birds" />
   </div>
   <div id="map"></div>
-<!-- <form action="" method="get" id="search">
-    <div>
-        <input
-      id="search-input"
-      class="controls"
-      type="text"
-      placeholder="Search Box"
-    />
-    <input type="submit" id="address-search" value="search"> -->
-
+  
 {% endblock %}

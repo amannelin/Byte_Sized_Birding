@@ -12,7 +12,7 @@ def make_call_flickr(bird):
     return parsed
 
 
-# https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=FLICKR_API_KEY&tags=black-capped+chickadee&per_page=3&page=1&format=json&nojsoncallback=1
+# https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=FLICKR_API_KEY&tags={bird}&per_page=3&page=1&format=json&nojsoncallback=1
 
 downy = {'photos': {'page': 1, 'pages': 11, 'perpage': 3, 'total': '31', 'photo': 
     [{'id': '48051425953', 'owner': '89103347@N00', 'secret': '08788be39d', 'server': '65535', 'farm': 66, 'title': 'Downy Woodpecker', 'ispublic': 1, 'isfriend': 0, 'isfamily': 0}, 
@@ -48,8 +48,6 @@ def api_call(bird):
 
     return request
 
-api_call('tufted-titmouse')
-
 def make_img_links(json):
     images = json["photos"]["photo"]
     
@@ -57,7 +55,5 @@ def make_img_links(json):
         link = f"https://live.staticflickr.com/{image['server']}/{image['id']}_{image['secret']}_s.jpg"
         print(link)   
     return link
-
-make_img_links(downy)
 
 
