@@ -4,7 +4,7 @@ from model import connect_to_db
 import crud
 
 from jinja2 import StrictUndefined
-import googlemaps
+# import googlemaps
 from datetime import datetime
 import json
 import urllib.request
@@ -21,13 +21,13 @@ def show_homepage():
     return render_template('home_test.html')
 
 @app.route('/birding_list')
-def show_bird_list():
+def show_bird_list(touch):
     """display birding list"""
 
     return render_template('bird_list.html')
 
 # def geocode(address):
-#     gmaps = googlemaps.Client(key='AIzaSyAUAbrtBxOl8_xUzqcSYfz88dVmthTSwIk')
+#     gmaps = googlemaps.Client(key=GMAPS_API_KEY)
 #     geocode_result = gmaps.geocode(f'{address}')
 
 

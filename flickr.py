@@ -1,11 +1,10 @@
 import flickrapi
 import json
 
-api_key = u'6f3be1618e77f65b3101f277859b898b'
-api_secret = u'db55ada10b7d49c5'
+
 
 def make_call_flickr(bird):
-    flickr = flickrapi.FlickrAPI(api_key, api_secret)
+    flickr = flickrapi.FlickrAPI(FLICKR_API_KEY, FLICKR_API_SECRET)
     raw_json = flickr.photos.search(per_page='3', page='1', tags='downy+woodpeckr', format='json')
     parsed = json.loads(raw_json.decode('utf-8'))
     print(parsed)
@@ -13,7 +12,7 @@ def make_call_flickr(bird):
     return parsed
 
 
-# https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=6f3be1618e77f65b3101f277859b898b&tags=black-capped+chickadee&per_page=3&page=1&format=json&nojsoncallback=1
+# https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=FLICKR_API_KEY&tags=black-capped+chickadee&per_page=3&page=1&format=json&nojsoncallback=1
 
 downy = {'photos': {'page': 1, 'pages': 11, 'perpage': 3, 'total': '31', 'photo': 
     [{'id': '48051425953', 'owner': '89103347@N00', 'secret': '08788be39d', 'server': '65535', 'farm': 66, 'title': 'Downy Woodpecker', 'ispublic': 1, 'isfriend': 0, 'isfamily': 0}, 

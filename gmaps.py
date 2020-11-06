@@ -3,7 +3,7 @@ from datetime import datetime
 import json
 import urllib.request
 
-gmaps = googlemaps.Client(key='AIzaSyAUAbrtBxOl8_xUzqcSYfz88dVmthTSwIk')
+gmaps = googlemaps.Client(key=GMAPS_API_KEY)
 
 # Geocoding an address
 address = '3804 Elliot Ave, Minneapolis'
