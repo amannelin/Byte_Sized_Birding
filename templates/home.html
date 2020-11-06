@@ -1,7 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}Birding List{% endblock %}
+{% block head %}
+    
+{% endblock %}
 {% block body %}
-<h3>Who's Flying Your Way?</h3>
-<p>test</p>
+<h1>Who's Flying Your Way?</h1>
+<h3>Enter An Address To See The Ten Most Recent Birds Spotted Nearby:</h3>
+<div id="floating-panel">
+    <input id="address" type="textbox" value="Sydney, NSW" />
+    <input id="submit" type="button" value="Geocode" />
+  </div>
+  <div id="map"></div>
+<!-- <form action="" method="get" id="search">
+    <div>
+        <input
+      id="search-input"
+      class="controls"
+      type="text"
+      placeholder="Search Box"
+    />
+    <input type="submit" id="address-search" value="search"> -->
 
 {% endblock %}

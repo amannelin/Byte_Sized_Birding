@@ -9,7 +9,7 @@ class Bird(db.Model):
 
     __tablename__ = 'birds'
 
-    #will use 4-letter species abbreviation
+    #will use 6-letter species abbreviation
     bird_id = db.Column(db.String, primary_key=True)
     scientific_name = db.Column(db.String, unique = True, nullable=False)
     common_name = db.Column(db.String)
