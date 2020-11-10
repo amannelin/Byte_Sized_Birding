@@ -56,4 +56,21 @@ def make_img_links(json):
         print(link)   
     return link
 
+birds =    [{
+        "comName": "Blue Jay",
+        "howMany": 3,
+        "lat": 44.92142,
+        "lng": -93.30414,
+        "locId": "L356105",
+        "locName": "Lake Harriet",
+
+    }]
+
+
+for bird in birds:
+    bird_name = bird['comName'].split()
+    bird_name = "+".join(bird_name).lower()
+
+print(bird_name)
+
 

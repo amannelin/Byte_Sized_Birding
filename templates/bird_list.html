@@ -1,7 +1,21 @@
 
 {% extends 'base.html' %}
 {% block title %}Birding List{% endblock %}
+{% block head %}
+<script src="static/js/bird_list.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+{% endblock %}
 {% block body %}
 <h2>Watch For These Feathered Friends!</h2>
-<div id = "birding list"></div>
+<section id = "birding list">
+{% for bird in session['birds'] %}
+    <div id = bird_info>
+        <div class = img>{{ photo_1 }}</div>
+        <div class = com_name>{{ bird['comName'] }}</div>
+        <div class = sci_name> {{ bird['sciName'] }}</div>
+  </div>
+{% endfor %}
+
+</section>
+
 {% endblock %}

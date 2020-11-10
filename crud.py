@@ -33,6 +33,10 @@ def create_search(location_id, bird_id):
     db.session.add(location)
     db.session.commit()
 
+def get_birds():
+    """return all birds"""
+
+    return Bird.query.all()
 
 if __name__ == '__main__':
     from server import app

@@ -17,22 +17,21 @@ def find_birds(nearby):
         print((dict['locName']))
 
 
-home = get_nearby_observations(KEY, 44.93, -93.26, dist=10, back=2, max_results=10)
-print(json.dumps(home, indent=4, sort_keys=True))
+# home = get_nearby_observations(KEY, 44.93, -93.26, dist=10, back=2, max_results=10)
+# print(json.dumps(home, indent=4, sort_keys=True))
 
-chickadee_hollow = get_nearby_observations(KEY, 46.12, -92.43, dist=10, back=14, max_results=10)
-# print(json.dumps(chickadee_hollow, indent=4, sort_keys=True))
+# chickadee_hollow = get_nearby_observations(KEY, 46.12, -92.43, dist=10, back=14, max_results=10)
+# # print(json.dumps(chickadee_hollow, indent=4, sort_keys=True))
 
-sandhill = get_species_observations(KEY, 'sancra', 'US-MN')
-#print(sandhill)
-#species(sandhill)
+# sandhill = get_species_observations(KEY, 'sancra', 'US-MN')
+# #print(sandhill)
+# #species(sandhill)
 
-kestrel = get_species_observations(KEY, 'amekes', 'US-MN')
-#species(kestrel)
+# kestrel = get_species_observations(KEY, 'amekes', 'US-MN')
+# #species(kestrel)
 
-fun = get_nearby_notable(KEY, 44.93, -93.26, dist=10)
-# find_birds(fun)
-
+# fun = get_nearby_notable(KEY, 44.93, -93.26, dist=10)
+# # find_birds(fun)
 
 
 
