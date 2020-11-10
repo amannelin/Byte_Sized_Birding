@@ -30,17 +30,26 @@ def show_homepage():
 @app.route('/ebird-call', methods=['GET', 'POST'])
 def get_birds_by_loc():
     """use lat/long to make ebird call"""
-    session['birds'] = get_birds()
-    # for bird in session['birds']:
-    #     get_image_link(bird)
+    get_birds()
 
     return session['birds'][0]['comName']
+
+@app.route('/flickr-call')
+def add_images():
+    """use flickr api to add images to session birds"""
+    
+    for bird in session['birds']:
+      bird_name = bird['comName']
+      link = get_image_link(bird_name)
+      bird['photo_1'] = link
+    
+    return session['birds'][0]['photo_1']
 
 
 @app.route('/bird-list')
 def show_bird_list():
     """display birding list"""
-
+    
 
     return render_template('bird_list.html')
 
@@ -51,34 +60,23 @@ def get_birds():
     lat = request.form.get("lat")
     lng = request.form.get("lng")
     birds = get_nearby_observations(KEY, lat, lng, dist=10, back=2, max_results=10)
-    # birds = jsonify(birds)
+    session['birds'] = birds
+    
+    return session['birds']
 
-    return birds
-
-def get_image_link(bird):
+def get_image_link(bird_name):
     """use flicker api to get an image for each bird in list"""
     flickr = flickrapi.FlickrAPI(FLICKR_API_KEY, FLICKR_API_SECRET)
-    bird_name = "Blue Jay".split()
-    bird_name = "+".join(bird_name).lower
-    raw_json = flickr.photos.search(per_page='1', page='1', tags='{bird_name}', format='json')
-    # parsed = json.loads(raw_json.decode('utf-8'))
-    # image= parsed['photos']['photo']
-    # link = f"https://live.staticflickr.com/{image['server']}/{image['id']}_{image['secret']}_m.jpg"
-  
+    bird_name = bird_name.split()
+    bird = "+".join(bird_name).lower()
+    flickr = flickrapi.FlickrAPI(FLICKR_API_KEY, FLICKR_API_SECRET)
+    raw_json = flickr.photos.search(per_page='1', page='1', tags=bird, format='json')
+    parsed = json.loads(raw_json.decode('utf-8'))
+    image = parsed["photos"]["photo"][0]
+    link = f"https://live.staticflickr.com/{image['server']}/{image['id']}_{image['secret']}_m.jpg"
+    return link
 
-    return raw_json
 
-# def get_bird_ids(birds):
-#     """returns bird ids for all bird objects in birds"""
-#     ids = []
-#     for bird in birds:
-#         id = bird["speciesCode"]
-#         ids.append(id)
-
-#     return ids
-
-# def make_bird_div(birds):
-#     for bird in birds:
 
         
 

@@ -9,8 +9,10 @@
 <h2>Watch For These Feathered Friends!</h2>
 <section id = "birding list">
 {% for bird in session['birds'] %}
+
     <div id = bird_info>
-        <div class = img>{{ photo_1 }}</div>
+        <div class = img><img src = "{{ bird['photo_1'] }}"
+            alt="It looks like we couldn't find a photo for this bird"></a></div>
         <div class = com_name>{{ bird['comName'] }}</div>
         <div class = sci_name> {{ bird['sciName'] }}</div>
   </div>
