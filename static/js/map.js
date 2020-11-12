@@ -20,10 +20,11 @@ function initMap() {
         });
         let lat = results[0].geometry.location.lat();
         let lng = results[0].geometry.location.lng();
-        let lat_lng = {lat:lat, lng:lng}
+        let address = results[0].formated_address;
+        let data = {lat:lat, lng:lng, addres:address}
         console.log(lat);
         console.log(lng);
-        $.post('/ebird-call', lat_lng, (res) =>{
+        $.post('/ebird-call', data, (res) =>{
           alert(res);
         
       });}

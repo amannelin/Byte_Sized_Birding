@@ -15,7 +15,7 @@ def make_call_flickr(bird):
     return parsed
 
 
-f'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key={FLICKR_API_KEY}tags={bird}&per_page=3&page=1&format=json&nojsoncallback=1'
+#f'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key={FLICKR_API_KEY}tags={bird}&per_page=3&page=1&format=json&nojsoncallback=1'
 
 downy = {'photos': {'page': 1, 'pages': 11, 'perpage': 3, 'total': '31', 'photo': 
     [{'id': '48051425953', 'owner': '89103347@N00', 'secret': '08788be39d', 'server': '65535', 'farm': 66, 'title': 'Downy Woodpecker', 'ispublic': 1, 'isfriend': 0, 'isfamily': 0}, 
@@ -92,7 +92,6 @@ def get_image_link(bird_name):
     return link
 
 
-@app.route('/flickr-call')
 def add_images():
     """use flickr api to add images to session birds"""
     

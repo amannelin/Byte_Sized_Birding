@@ -33,7 +33,7 @@ result = [{'address_components':
 
 lat = result[0]['geometry']['location']['lat']
 lng = result[0]['geometry']['location']['lng']
-
+address = result[0]['formatted_address']
 
 # print(lat)
 

@@ -24,7 +24,7 @@ for bird in bird_data:
         bird['scientific_name'],
         bird['common_name'],
         bird['photo_1'],
-        bird['song_1'],
+        bird['call_1'],
         bird['ebird_page'])
 
     db_bird = crud.create_bird(bird_id, scientific_name, common_name, photo_1, song_1, ebird_page)

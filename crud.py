@@ -7,7 +7,7 @@ def create_bird(bird_id, scientific_name, common_name, photo_1, song_1, ebird_pa
     """Create and return a new bird."""
 
     bird = Bird(bird_id=bird_id, scientific_name=scientific_name, common_name=common_name, 
-        photo_1=photo_1, song_1=song_1, ebird_page=ebird_page)
+        photo_1=photo_1, call_1=call_1, ebird_page=ebird_page)
 
     db.session.add(bird)
     db.session.commit()
