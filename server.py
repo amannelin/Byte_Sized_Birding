@@ -50,7 +50,11 @@ def add_images():
         except:
             bird['photo_1'] = None
         session['birds'] = session['birds']
+<<<<<<< HEAD
     return "Added Photos, please wait while we add bird songs"
+=======
+    return session['birds'][0]['comName']
+>>>>>>> 38c7839f8f168183ae374a5e4aa5c421cb881fdc
     
     
 
@@ -66,7 +70,11 @@ def add_calls():
             bird['call_1'] = None
     session['birds'] = session['birds']
 
+<<<<<<< HEAD
     return "Added Songs!"
+=======
+    return redirect('/bird-list')
+>>>>>>> 38c7839f8f168183ae374a5e4aa5c421cb881fdc
 
 #TODO : fix the link issue!
 
