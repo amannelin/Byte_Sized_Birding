@@ -1,8 +1,7 @@
 #map {
   height: 50%;
 }
-/* 
-Optional: Makes the sample page fill the window. */
+/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
@@ -39,8 +38,9 @@ h2 {
     font-size: 10px
   }
 
-#bird_info{
-  padding: 10px;
+.bird_info{
+  padding: 20px;
+  margin: 20px;
 }  
 .com_name{
   font-size: 20px;

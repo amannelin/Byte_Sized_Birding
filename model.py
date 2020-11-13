@@ -9,10 +9,11 @@ class Bird(db.Model):
 
     __tablename__ = 'birds'
 
-    #will use 6-letter species abbreviation
+    #will use 6-letter species abbreviation as primary key
     bird_id = db.Column(db.String, primary_key=True)
     scientific_name = db.Column(db.String, unique = True, nullable=False)
     common_name = db.Column(db.String)
+    searcy_tag = db.Column(db.String)
     photo_1 = db.Column(db.String)
     song_1 = db.Column(db.String)
     ebird_page = db.Column(db.String)
@@ -28,9 +29,8 @@ class Location(db.Model):
     __tablename__ = "locations"
 
     location_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    country = db.Column(db.String, nullable=False)
-    state = db.Column(db.String)
-    city = db.Column(db.String)
+    location_name = db.Column(db.String, nullable=True)
+    address = db.Column(db.String, nullable=False)
     latitude = db.Column(db.Float, nullable=False)
     longitude = db.Column(db.Float, nullable=False)
     radius = db.Column(db.Integer, default=25)

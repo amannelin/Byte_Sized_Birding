@@ -32,8 +32,12 @@ def show_homepage():
 def get_birds_by_loc():
     """use lat/long to make ebird call"""
     get_birds()
-
-    return session['birds'][0]['comName']
+    try:
+        if session['birds'][0]['comName']:
+            return "The birds are flocking in!"
+    except:
+            return "Unable to find sightings for this location."
+        
 
 @app.route('/flickr-call')
 def add_images():
@@ -46,7 +50,7 @@ def add_images():
         except:
             bird['photo_1'] = None
         session['birds'] = session['birds']
-    return session['birds'][0]['comName']
+    return "Added Photos, please wait while we add bird songs"
     
     
 
@@ -62,7 +66,7 @@ def add_calls():
             bird['call_1'] = None
     session['birds'] = session['birds']
 
-    return redirect('/bird-list')
+    return "Added Songs!"
 
 #TODO : fix the link issue!
 
@@ -86,20 +90,23 @@ def get_birds():
 
 def make_search_tag(bird):
     """gets bird common name from json and parses it into correct form for api calls"""
+
     bird_name = bird['comName']
     bird_name = bird_name.split()
     bird_name = "+".join(bird_name).lower()
-
+    
     return bird_name
 
 
 def get_image_link(bird_name):
     """use flicker api to get an image for a given bird"""
+    
     flickr = flickrapi.FlickrAPI(FLICKR_API_KEY, FLICKR_API_SECRET)
     raw_json = flickr.photos.search(per_page='1', page='1', tags=bird_name, format='json')
     parsed = json.loads(raw_json.decode('utf-8'))
     image = parsed["photos"]["photo"][0]
     link = f"https://live.staticflickr.com/{image['server']}/{image['id']}_{image['secret']}_m.jpg"
+    
     return link
 
 def get_call_link(bird_name):
@@ -108,6 +115,7 @@ def get_call_link(bird_name):
     response = requests.get(f"https://www.xeno-canto.org/api/2/recordings?query={bird_name}+q:A+len_lt:20")
     url = response.json()['recordings'][0]['url']
     link = f"https:{url}/embed?simple=1"
+    
     return link
 
 
