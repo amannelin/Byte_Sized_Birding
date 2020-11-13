@@ -6,7 +6,6 @@ import crud
 import data
 
 from jinja2 import StrictUndefined
-# import googlemaps
 from datetime import datetime
 import json
 import urllib.request
@@ -27,6 +26,8 @@ def show_homepage():
     """display homepage"""
 
     return render_template('home.html')
+
+#TODO Flash message or other indication that something is happening during ebird request
 
 @app.route('/ebird-call', methods=['GET', 'POST'])
 def get_birds_by_loc():
@@ -50,12 +51,9 @@ def add_images():
         except:
             bird['photo_1'] = None
         session['birds'] = session['birds']
-<<<<<<< HEAD
+
     return "Added Photos, please wait while we add bird songs"
-=======
-    return session['birds'][0]['comName']
->>>>>>> 38c7839f8f168183ae374a5e4aa5c421cb881fdc
-    
+
     
 
 @app.route('/xeno-canto-call')
@@ -70,13 +68,11 @@ def add_calls():
             bird['call_1'] = None
     session['birds'] = session['birds']
 
-<<<<<<< HEAD
     return "Added Songs!"
-=======
-    return redirect('/bird-list')
->>>>>>> 38c7839f8f168183ae374a5e4aa5c421cb881fdc
 
-#TODO : fix the link issue!
+
+#FIXME : link issue!
+#TODO : have bird list load first and add calls as they are returned. sloooooow
 
 
 @app.route('/bird-list')
@@ -84,7 +80,30 @@ def show_bird_list():
     """display birding list"""
     
 
-    return render_template("bird_list.html")
+    return render_template("bird-list.html")
+
+@app.route('/bird-details')
+def show_details():
+    """display more images, information, for bird from birding list"""
+
+    return render_template("bird-details.html")
+
+#TODO : details!
+
+@app.route('/printable-list')
+def make_list():
+    """a printable version of the location-based list"""
+
+    return render_template("printable-list.html")
+
+#TODO : easy-peasy
+
+@app.route('/bird-quiz')
+def make_quiz():
+
+    return render_template("bird-quiz.html")
+
+#TODO : quiz! REACT?
 
 
 def get_birds():
