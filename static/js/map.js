@@ -5,7 +5,7 @@ function initMap() {
     });
     const geocoder = new google.maps.Geocoder();
     document.getElementById("submit").addEventListener("click", () => {
-      geocodeAddress(geocoder, map);
+      geocodeAddress(geocoder, map); 
     });
   }
   
@@ -25,9 +25,14 @@ function initMap() {
         console.log(lat);
         console.log(lng);
         $.post('/ebird-call', data, (res) =>{
-          alert(res);
-        
-      });}
+          let birds = res;
+          // alert("The birds are flocking in!");
+        $.get('/flickr-call', birds, () =>{
+          // alert("Added pictures to birding list!")
+        $.get('/xeno-canto-call', () => {
+            // alert("Added audio to birding list!")
+            window.location.replace('/bird-list');
+        })})});}
       else {
         alert("Geocode was not successful for the following reason: " + status);
       }

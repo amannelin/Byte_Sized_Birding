@@ -1,6 +1,3 @@
-// $('#list-adder').on('dblclick', () => {
-//     $('#list').append('<li>Item</li>');
-//     });
 
 // $('birding_list').append('<div>bird</div>')
 
