@@ -45,9 +45,10 @@ def add_images():
             bird['photo_1'] = link
         except:
             bird['photo_1'] = None
-    session['birds'] = session['birds']
+        session['birds'] = session['birds']
+    return session['birds'][0]['comName']
     
-    return session['birds'][0]['photo_1']
+    
 
 @app.route('/xeno-canto-call')
 def add_calls():
@@ -61,7 +62,7 @@ def add_calls():
             bird['call_1'] = None
     session['birds'] = session['birds']
 
-    return session['birds'][0]['call_1']
+    return redirect('/bird-list')
 
 #TODO : fix the link issue!
 

@@ -43,11 +43,16 @@ h2 {
   padding: 10px;
 }  
 .com_name{
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .sci_name{
   font-family: "Courier New", Courier, monospace;
   font-size: 12px;
   color: #332c2c;
+}
+
+.loc_name{
+  font-size: 12px;
+  color: rgb(29, 31, 34);
 }
