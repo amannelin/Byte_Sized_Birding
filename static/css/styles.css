@@ -27,9 +27,16 @@ h2 {
     top: 20px;
     Width: 100%;
     height: 5rem;
-    margin: auto;
+    margin: auto;}
 
+h4 {
+    text-align: right;
+    font-size: 10px;
+    width: 100%;
+    height: 3 rem;
+    padding: 2rem;
 }
+
 #footer {
     position: static;
     bottom: 0;
@@ -56,3 +63,10 @@ h2 {
   font-size: 12px;
   color: rgb(29, 31, 34);
 }
+
+.printable { list-style-type: none; 
+      list-style-position: outside;
+        padding: 10px}
+li::before { content: "\2610"; 
+              margin-right: 0.5em;}
+.inner {margin-left: 25px}

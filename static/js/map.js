@@ -1,3 +1,6 @@
+// TODO: SWITCH SEARCH TO AUTOCOMPLETE
+// TODO: WAITING MESSAGE
+
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 8,
