@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Birding List{% endblock %}
+{% block head %}
+<script src="static/js/bird_list.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+{% endblock %}
+{% block body %}
+<h4>
+    <div>
+        <form>
+        <input type="button" value="Print this page" onClick="window.print()">
+        </form>
+    </div>
+</h4>
+<section id = "printable birding list"></section>
+<h2>Watch For These Feathered Friends!</h2>
+<ol>
+{% for bird in session['birds'] %}
+    <li class = printable>
+            <span class = com_name>{{ bird['comName'] }}</span>
+            <div class =inner>
+                <div class = sci_name>{{ bird['sciName'] }}</div>
+                <div class = loc_name>Seen at: {{ bird['locName'] }}</div>
+            </div>
+    </li>
+{% endfor %}
+</ol>
+</section>
+<footer id="footer">"This product uses the Ebird API"</footer>
+{% endblock %}

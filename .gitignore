@@ -4,3 +4,4 @@ env/
 secrets.sh
 __pycache__
 .pyc
+.vscode/

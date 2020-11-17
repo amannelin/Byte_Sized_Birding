@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+{% block title %}Birding List{% endblock %}
+{% block body %}
+<h4><a href="/printable-list">Printable List</a></h4>
+<h2>Watch For These Feathered Friends!</h2>
+<section id = "birding list">
+
+{% for bird in session['birds'] %}
+
+    <div class = bird_info>
+        <div class = com_name>{{ bird['comName'] }}</div>
+        <div class = sci_name>{{ bird['sciName'] }}</div>
+        <div class = loc_name>Seen at: {{ bird['locName'] }}</div>
+        <div class = img><img src = "{{ bird['photo1'] }}"
+            alt="It looks like we couldn't find a photo for this bird"></img></div>
+        <div class = bird_call><iframe src= "{{ bird['call1'] }}" scrolling='no' frameborder='0' width='340' height='115' longdesc="It looks like we couldn't find a call for this bird"></iframe></div>
+  </div>
+{% endfor %}
+
+</section>
+<footer id="footer">"This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc."</footer>
+{% endblock %}
