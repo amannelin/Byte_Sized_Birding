@@ -1,8 +1,8 @@
 import os
 from flask import (Flask, render_template, request, flash, session,
                    redirect, jsonify)
-from model import connect_to_db
 import crud
+from model import connect_to_db
 import data
 
 from jinja2 import StrictUndefined
@@ -21,6 +21,23 @@ app = Flask(__name__)
 app.secret_key = b'show/me?the#birds!'
 
 
+@app.route('/save-birds')
+def save_birds_to_db():
+    for bird in session['birds']:
+        in_db = crud.get_bird_by_code(bird['speciesCode'])
+        if in_db:
+            pass
+        else:
+            speciesCode=bird['speciesCode']
+            sciName=bird['sciName']
+            comName=bird['comName']
+            photo1=bird['photo1']
+            call1=bird['call1']
+            searchTag = bird['searchTag']
+            crud.create_bird(speciesCode, sciName, comName, photo1, call1, searchTag)
+    
+    return "successfully added new birds to database!"
+
 @app.route('/')
 def show_homepage():
     """display homepage"""
@@ -37,8 +54,10 @@ def get_birds_by_loc():
         if session['birds'][0]['comName']:
             return "The birds are flocking in!"
     except:
-            return "Unable to find sightings for this location."
+        return "Unable to find sightings for this location."
         
+
+#TODO:  stay on home page if no sightings     
 
 @app.route('/flickr-call')
 def add_images():
@@ -46,26 +65,25 @@ def add_images():
     for bird in session['birds']:
         bird_name = make_search_tag(bird)
         try:
-            link = get_image_link(bird_name)
-            bird['photo_1'] = link
+            link = get_image_link(bird['searchTag'])
+            bird['photo1'] = link
         except:
-            bird['photo_1'] = None
+            bird['photo1'] = None
         session['birds'] = session['birds']
 
     return "Added Photos, please wait while we add bird songs"
 
     
-
 @app.route('/xeno-canto-call')
 def add_calls():
     """use xeno-canto api to add vocalizations to session birds"""
     for bird in session['birds']:
-        bird_name = make_search_tag(bird)
+        bird_name = bird['searchTag']
         try:
             link = get_call_link(bird_name)
-            bird['call_1'] = link
+            bird['call1'] = link
         except: 
-            bird['call_1'] = None
+            bird['call1'] = None
     session['birds'] = session['birds']
 
     return "Added Songs!"
@@ -82,11 +100,12 @@ def show_bird_list():
 
     return render_template("bird-list.html")
 
-@app.route('/bird-details')
-def show_details():
+@app.route('/bird-details/<speciesCode>')
+def show_details(speciesCode):
     """display more images, information, for bird from birding list"""
 
-    return render_template("bird-details.html")
+    bird = crud.get_bird_by_code(speciesCode)
+    return render_template("bird-details.html", bird=bird)
 
 #TODO : details!
 
@@ -96,7 +115,6 @@ def make_list():
 
     return render_template("printable-list.html")
 
-#TODO : easy-peasy
 
 @app.route('/bird-quiz')
 def make_quiz():
@@ -121,7 +139,8 @@ def make_search_tag(bird):
     bird_name = bird['comName']
     bird_name = bird_name.split()
     bird_name = "+".join(bird_name).lower()
-    
+    bird['searchTag'] = bird_name
+
     return bird_name
 
 
@@ -149,4 +168,5 @@ def get_call_link(bird_name):
         
 
 if __name__ == '__main__':
+    connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

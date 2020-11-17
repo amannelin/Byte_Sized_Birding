@@ -6,6 +6,8 @@ function initMap() {
       zoom: 8,
       center: { lat: 44.977753, lng: -93.2650108 },
     });
+    // const autocomplete = new google.maps.places.Autocomplete(
+    //   document.getElementById("address"));
     const geocoder = new google.maps.Geocoder();
     document.getElementById("submit").addEventListener("click", () => {
       geocodeAddress(geocoder, map); 

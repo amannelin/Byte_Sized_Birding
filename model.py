@@ -10,18 +10,17 @@ class Bird(db.Model):
     __tablename__ = 'birds'
 
     #will use 6-letter species abbreviation as primary key
-    bird_id = db.Column(db.String, primary_key=True)
-    scientific_name = db.Column(db.String, unique = True, nullable=False)
-    common_name = db.Column(db.String)
-    searcy_tag = db.Column(db.String)
-    photo_1 = db.Column(db.String)
-    song_1 = db.Column(db.String)
-    ebird_page = db.Column(db.String)
+    speciesCode = db.Column(db.String, primary_key=True)
+    sciName = db.Column(db.String, unique = True, nullable=False)
+    comName = db.Column(db.String)
+    searchTag = db.Column(db.String)
+    photo1 = db.Column(db.String)
+    call1 = db.Column(db.String)
 
     # location_birds = a list of location search objects
 
     def __repr__(self):
-        return f'<Bird bird_id={self.bird_id} name={self.common_name}>'
+        return f'<Bird bird_id={self.speciesCode} name={self.comName}>'
 
 class Location(db.Model):
     """location data"""
@@ -51,7 +50,7 @@ class Search(db.Model):
                         primary_key=True)
     location_id = db.Column(db.Integer, 
                 db.ForeignKey('locations.location_id'))
-    bird_id = db.Column(db.String, db.ForeignKey('birds.bird_id'))
+    bird_id = db.Column(db.String, db.ForeignKey('birds.speciesCode'))
 
     bird = db.relationship('Bird', backref='location_birds')
     location =db.relationship('Location', backref='location_birds')
