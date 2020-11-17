@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Bird Details{% endblock %}
 {% block body %}
+<h2>Bird Details</h2>
 
-<div class = bird_info>
-    <div class = com_name>{{ bird['comName'] }}</div>
-    <div class = sci_name>{{ bird['sciName'] }}</div>
-    <div class = loc_name>Seen at: {{ bird['locName'] }}</div>
+<div class = bird_details>
+    <div class = com_name>Common Name: {{ bird['comName'] }}</div>
+    <div class = sci_name>Scientific Name: {{ bird['sciName'] }}</div>
+    <div class = loc_name>Species Code: {{ bird['speciesCode'] }}</div>
     <div class = img><img src = "{{ bird['photo1'] }}"
         alt="It looks like we couldn't find a photo for this bird"></img></div>
         <div class = img><img src = "{{ bird['photo2'] }}"
@@ -16,4 +17,11 @@
             width='340' height='115' longdesc="bird call"></iframe></div>
     <div class = ebird>See the <a href="https://ebird.org/species/{{bird['speciesCode']}}">Ebird</a> page for this species for more information!</div>
 </div>
+{% endblock %}
+{% block after_body %}
+<footer id="footer">
+    <div><a href = "www.flickr.com">This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</a></div>
+    <div><a href = "www.ebird.org">This Product uses the eBird Api from the Cornell Lab of Ornithology</a></div>
+    <div><a href = "www.xeno-canto.org">This Product uses the Xeno-Canto API from the Xeno-Canto Foundation</a></div>
+</footer>
 {% endblock %}

@@ -14,17 +14,16 @@ os.system('createdb locate_birds')
 model.connect_to_db(server.app)
 model.db.create_all()
 
-with open('data/birds.json') as b:
-    bird_data = json.loads(b.read())
+# with open('data/birds.json') as b:
+#     bird_data = json.loads(b.read())
 
 # birds_in_db = []
 # for bird in bird_data:
-#     bird_id, scientific_name, common_name, photo_1, call_1, search_tag = (bird['bird_id'],
-#         bird['scientific_name'],
-#         bird['common_name'],
-#         bird['photo_1'],
-#         bird['call_1'],
-#         bird['search_tag'])
+#     speciesCode, sciName, comName, call1, searchTag = (bird['speciesCode'],
+#         bird['sciName'],
+#         bird['comName'],
+#         bird['call1'],
+#         bird['searchTag'])
 
-#     db_bird = crud.create_bird(bird_id, scientific_name, common_name, photo_1, song_1, search_tag)
+#     db_bird = crud.create_bird(speciesCode, sciName, comName, song1, searchTag)
 #     birds_in_db.append(db_bird)

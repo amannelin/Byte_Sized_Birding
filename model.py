@@ -14,7 +14,6 @@ class Bird(db.Model):
     sciName = db.Column(db.String, unique = True, nullable=False)
     comName = db.Column(db.String)
     searchTag = db.Column(db.String)
-    photo1 = db.Column(db.String)
     call1 = db.Column(db.String)
 
     # location_birds = a list of location search objects

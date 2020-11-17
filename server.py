@@ -1,16 +1,18 @@
 import os
 from flask import (Flask, render_template, request, flash, session,
                    redirect, jsonify)
-import crud
-from model import connect_to_db
-import data
-
 from jinja2 import StrictUndefined
 from datetime import datetime
 import json
 import urllib.request
-import flickrapi
 import requests
+import random
+
+import crud
+from model import connect_to_db
+import data
+
+import flickrapi
 from ebird.api import get_nearby_observations, get_species_observations, get_nearby_notable
 KEY = os.environ['API_KEY']
 FLICKR_API_KEY = os.environ['FLICKR_API_KEY']
@@ -31,10 +33,9 @@ def save_birds_to_db():
             speciesCode=bird['speciesCode']
             sciName=bird['sciName']
             comName=bird['comName']
-            photo1=bird['photo1']
             call1=bird['call1']
             searchTag = bird['searchTag']
-            crud.create_bird(speciesCode, sciName, comName, photo1, call1, searchTag)
+            crud.create_bird(speciesCode, sciName, comName, call1, searchTag)
     
     return "successfully added new birds to database!"
 
@@ -65,7 +66,7 @@ def add_images():
     for bird in session['birds']:
         bird_name = make_search_tag(bird)
         try:
-            link = get_image_link(bird['searchTag'])
+            link = get_image_link(bird["searchTag"])
             bird['photo1'] = link
         except:
             bird['photo1'] = None
@@ -73,6 +74,7 @@ def add_images():
 
     return "Added Photos, please wait while we add bird songs"
 
+#TODO: more images?
     
 @app.route('/xeno-canto-call')
 def add_calls():
@@ -105,9 +107,12 @@ def show_details(speciesCode):
     """display more images, information, for bird from birding list"""
 
     bird = crud.get_bird_by_code(speciesCode)
-    return render_template("bird-details.html", bird=bird)
+    links = get_three_images(bird.searchTag)
+    bird.photo1=links[0]
+    bird.photo2=links[1]
+    bird.photo3=links[2]
 
-#TODO : details!
+    return render_template("bird-details.html", bird=bird)
 
 @app.route('/printable-list')
 def make_list():
@@ -133,6 +138,9 @@ def get_birds():
     
     return session['birds']
 
+def check_db():
+    """queries database for birds in session"""
+
 def make_search_tag(bird):
     """gets bird common name from json and parses it into correct form for api calls"""
 
@@ -154,6 +162,22 @@ def get_image_link(bird_name):
     link = f"https://live.staticflickr.com/{image['server']}/{image['id']}_{image['secret']}_m.jpg"
     
     return link
+
+#TODO: image attribution!
+
+def get_three_images(bird_name):
+    """use flicker api to get three images for bird detail page"""
+    
+    flickr = flickrapi.FlickrAPI(FLICKR_API_KEY, FLICKR_API_SECRET)
+    raw_json = flickr.photos.search(per_page='3', page='1', tags=bird_name, format='json')
+    parsed = json.loads(raw_json.decode('utf-8'))
+    images = parsed['photos']['photo']
+    links = []
+    for image in images:
+        link = f"https://live.staticflickr.com/{image['server']}/{image['id']}_{image['secret']}_m.jpg"
+        links.append(link)
+
+    return links
 
 def get_call_link(bird_name):
     """use xeno-canto api to get a vocalization for a given bird"""

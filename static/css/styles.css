@@ -39,16 +39,25 @@ h4 {
 
 #footer {
     position: static;
-    bottom: 0;
+    bottom: 5px;
     width: 100%;
     height: 2.5rem;
-    font-size: 10px
+    font-size: 10px;
+    padding: 5px;
   }
 
 .bird_info{
   padding: 20px;
   margin: 20px;
 }  
+
+.bird_details{
+  margin-bottom: 20px;
+}
+
+.img{
+  padding: 5px;
+}
 .com_name{
   font-size: 20px;
 }

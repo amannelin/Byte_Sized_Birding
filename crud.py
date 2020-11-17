@@ -3,11 +3,11 @@
 from model import db, Bird, Location, Search, connect_to_db
 
 
-def create_bird(speciesCode, sciName, comName, photo1, call1, searchTag):
+def create_bird(speciesCode, sciName, comName, call1, searchTag):
     """Create and return a new bird."""
 
     bird = Bird(speciesCode=speciesCode, sciName=sciName, comName=comName, 
-         photo1=photo1, call1=call1, searchTag=searchTag)
+        call1=call1, searchTag=searchTag)
 
     db.session.add(bird)
     db.session.commit()
