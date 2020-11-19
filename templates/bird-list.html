@@ -4,12 +4,13 @@
 {% block body %}
 <h4><a href="/printable-list">Printable List</a></h4>
 <h2>Watch For These Feathered Friends!</h2>
+<h3>Click on any bird name for more information</h3>
 <section id = "birding list">
 
 {% for bird in session['birds'] %}
 
     <div class = bird_info>
-        <div class = com_name>{{ bird['comName'] }}</div>
+        <div class = com_name><a href = "/bird-details/{{bird['speciesCode']}}">{{ bird['comName'] }}</a></div>
         <div class = sci_name>{{ bird['sciName'] }}</div>
         <div class = loc_name>Seen at: {{ bird['locName'] }}</div>
         <div class = img><img src = "{{ bird['photo1'] }}"

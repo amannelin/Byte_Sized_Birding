@@ -1,13 +1,15 @@
 // TODO: SWITCH SEARCH TO AUTOCOMPLETE
 // TODO: WAITING MESSAGE
+// let autocomplete;
 
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 8,
       center: { lat: 44.977753, lng: -93.2650108 },
     });
-    // const autocomplete = new google.maps.places.Autocomplete(
-    //   document.getElementById("address"));
+      let autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById("address"),
+      );
     const geocoder = new google.maps.Geocoder();
     document.getElementById("submit").addEventListener("click", () => {
       geocodeAddress(geocoder, map); 

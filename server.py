@@ -81,11 +81,9 @@ def add_calls():
     """use xeno-canto api to add vocalizations to session birds"""
     for bird in session['birds']:
         bird_name = bird['searchTag']
-        try:
-            link = get_call_link(bird_name)
-            bird['call1'] = link
-        except: 
-            bird['call1'] = None
+        link = get_call_link(bird_name)
+        bird['call1'] = link
+
     session['birds'] = session['birds']
 
     return "Added Songs!"
@@ -123,8 +121,8 @@ def make_list():
 
 @app.route('/bird-quiz')
 def make_quiz():
-
-    return render_template("bird-quiz.html")
+    bird_name = session["birds"][0]["comName"]
+    return render_template("bird-quiz.html", bird_name=bird_name)
 
 #TODO : quiz! REACT?
 
@@ -183,8 +181,11 @@ def get_call_link(bird_name):
     """use xeno-canto api to get a vocalization for a given bird"""
 
     response = requests.get(f"https://www.xeno-canto.org/api/2/recordings?query={bird_name}+q:A+len_lt:20")
-    url = response.json()['recordings'][0]['url']
-    link = f"https:{url}/embed?simple=1"
+    try:
+        url = response.json()['recordings'][0]['url']
+        link = f"https:{url}/embed?simple=1"
+    except:
+        link = None
     
     return link
 
