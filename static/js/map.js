@@ -31,14 +31,20 @@ function initMap() {
         let data = {lat:lat, lng:lng, addres:address}
         console.log(lat);
         console.log(lng);
-        $.post('/ebird-call', data, (res) =>{
-          alert(res);
+        $.post('/ebird-call', data, (res, status) =>{
+            alert(res);
         $.get('/flickr-call', (res) => {
             alert(res);
-        $.get('/xeno-canto-call', () => {
+        $.get('/xeno-canto-call', (res) => {
+          alert(res);
+          $.get('/save-birds', (res) =>{
+              alert(res);
               window.location.replace('/bird-list');
             });
-          })});}
+          });
+        });
+      })
+    }
       else {
         alert("Geocode was not successful for the following reason: " + status);
       }

@@ -73,18 +73,21 @@ def add_images():
         session['birds'] = session['birds']
 
     return "Added Photos, please wait while we add bird songs"
-
-#TODO: more images?
     
 @app.route('/xeno-canto-call')
 def add_calls():
     """use xeno-canto api to add vocalizations to session birds"""
     for bird in session['birds']:
-        bird_name = bird['searchTag']
-        link = get_call_link(bird_name)
-        bird['call1'] = link
+        in_db = crud.get_bird_by_code(bird['speciesCode'])
+        if in_db:
+            bird['call1']=in_db.call1
 
-    session['birds'] = session['birds']
+        else:
+            bird_name = bird['searchTag']
+            link = get_call_link(bird_name)
+            bird['call1'] = link
+
+        session['birds'] = session['birds']
 
     return "Added Songs!"
 
@@ -106,9 +109,9 @@ def show_details(speciesCode):
 
     bird = crud.get_bird_by_code(speciesCode)
     links = get_three_images(bird.searchTag)
-    bird.photo1=links[0]
     bird.photo2=links[1]
     bird.photo3=links[2]
+    bird.photo4=links[3]
 
     return render_template("bird-details.html", bird=bird)
 
@@ -135,9 +138,6 @@ def get_birds():
     session['birds'] = get_nearby_observations(KEY, lat, lng, dist=10, back=2, max_results=10)
     
     return session['birds']
-
-def check_db():
-    """queries database for birds in session"""
 
 def make_search_tag(bird):
     """gets bird common name from json and parses it into correct form for api calls"""
@@ -167,7 +167,7 @@ def get_three_images(bird_name):
     """use flicker api to get three images for bird detail page"""
     
     flickr = flickrapi.FlickrAPI(FLICKR_API_KEY, FLICKR_API_SECRET)
-    raw_json = flickr.photos.search(per_page='3', page='1', tags=bird_name, format='json')
+    raw_json = flickr.photos.search(per_page='5', page='1', tags=bird_name, format='json')
     parsed = json.loads(raw_json.decode('utf-8'))
     images = parsed['photos']['photo']
     links = []

@@ -2,7 +2,7 @@
 const a = React.createElement
 const b = React.createElement;
 const bird = {name:birdName}
-const wrong = {name:"chickadee"}
+const wrong = {name:["chickadee", "nuthatch, downy"]}
 
 class BirdToGuess extends React.Component {
     constructor(props) {
@@ -35,6 +35,7 @@ class WrongGuess extends React.Component {
         );
     }
 }
+
 
 
 
