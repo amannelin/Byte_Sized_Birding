@@ -2,7 +2,7 @@
 const a = React.createElement
 const b = React.createElement;
 const bird = {name:birdName}
-const wrong = {name:["chickadee", "nuthatch, downy"]}
+const wrong = {names:["chickadee", "nuthatch", "downy"]}
 
 class BirdToGuess extends React.Component {
     constructor(props) {
@@ -29,10 +29,14 @@ class WrongGuess extends React.Component {
         if (this.state.guessed){
             return "this is not the bird you are looking for"
         }
-        return b ('button',
+        for (name of wrong.names){
+            console.log(name);
+            return a('button',
             {onClick: () =>  this.setState({guessed : true})},
-            wrong.name
-        );
+            name
+            );
+        }
+       
     }
 }
 
@@ -40,8 +44,6 @@ class WrongGuess extends React.Component {
 
 
 const a1 = document.querySelector('#answer_1');
-ReactDOM.render(b(BirdToGuess), a1);
+ReactDOM.render(a(BirdToGuess), a1);
 const a2 = document.querySelector('#answer_2');
-ReactDOM.render(a(WrongGuess), a2);
-
-
+ReactDOM.render(b(WrongGuess), a2);
