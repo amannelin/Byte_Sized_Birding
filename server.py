@@ -125,11 +125,20 @@ def make_list():
 @app.route('/bird-quiz')
 def make_quiz():
     bird_name = session["birds"][0]["comName"]
-    answers = [session["birds"][0]["comName"], session["birds"][1]["comName"]]
-    return render_template("bird-quiz.html", bird_name=bird_name, answers=answers)
+
+    return render_template("bird-quiz.html", bird_name=bird_name)
 
 #TODO : quiz! REACT?
 
+@app.route('/quiz-data.api')
+def make_questions():
+    q_and_a = [{"id":1, "name" : "chickadee", "is_correct" : False},
+                {"id":2, "name" : "nuthatch", "is_correct" : False},
+                {"id":3, "name" : "downy", "is_correct" : False},
+                {"id":4, "name" : "Canada Goose", "is_correct" : True}]
+
+    return jsonify(q_and_a)
+#request.args
 
 def get_birds():
     """fetches 10 bird objects form ebird API"""
