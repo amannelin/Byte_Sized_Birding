@@ -43,7 +43,7 @@ class WrongGuess extends React.Component {
 
 
 
-const a1 = document.querySelector('#answer_1');
+const a1 = document.querySelector('#root');
 ReactDOM.render(a(BirdToGuess), a1);
-const a2 = document.querySelector('#answer_2');
+const a2 = document.querySelector('#quiz');
 ReactDOM.render(b(WrongGuess), a2);

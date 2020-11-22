@@ -125,7 +125,8 @@ def make_list():
 @app.route('/bird-quiz')
 def make_quiz():
     bird_name = session["birds"][0]["comName"]
-    return render_template("bird-quiz.html", bird_name=bird_name)
+    answers = [session["birds"][0]["comName"], session["birds"][1]["comName"]]
+    return render_template("bird-quiz.html", bird_name=bird_name, answers=answers)
 
 #TODO : quiz! REACT?
 

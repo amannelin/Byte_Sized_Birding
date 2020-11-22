@@ -1,12 +1,7 @@
-{% extends 'base.html' %}
-{% block title %}Bird Quiz{% endblock %}
-{% block head %}
-
-{% endblock %}
-{% block body %}
+<html>
 <script type="text/javascript">
-    var birdName = '{{bird_name}}'
-
+    var bird_name = '{{bird_name}}'
+    var answers = '{{answers}}'
  </script>
 <h2></h2>
 <div id = "quiz">
@@ -16,17 +11,14 @@
 <div id = "root"></div>
 
 
-<footer id="footer">
-    <div><a href = "www.flickr.com">This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</a></div>
-    <div><a href = "www.ebird.org">This Product uses the eBird Api from the Cornell Lab of Ornithology</a></div>
-    <div><a href = "www.xeno-canto.org">This Product uses the Xeno-Canto API from the Xeno-Canto Foundation</a></div>
-</footer>
 
 <!-- Load React -->
 <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
 <!-- babel -->
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <!-- my js file -->
-<script src="/static/js/bird_quiz.js"></script>
-{% endblock %}
+<script src="/static/js/bird_quiz.jsx" type= text/babel></script>
+</html>
