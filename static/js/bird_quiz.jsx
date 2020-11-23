@@ -16,28 +16,36 @@ return "How Well Do You Know Your Birds?"
 
 
 
-function Question() {
-    return <div>{BirdName}</div>
+function Question(props) {
+    return <div>{props.text}</div>
 }
 function PossibleAnswers(props){
 
-    return <button onClick={() => checkAnswer(props.isCorrect)}>{props.name}</button>
+    return <li><button onClick={() => checkAnswer(props.isCorrect)}>{props.name}</button></li>
     
 
 }
 
 function Answers(props) {
     const [answers, setAnswers] = React.useState([])
+    const [quest, setQuest] = React.useState([])
     
     React.useEffect(() =>{
         fetch('/quiz-data.api')
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             const ans = []
-            for (const option of data) {
-                ans.push(<PossibleAnswers key = {option.id} name = {option.name} isCorrect = {option.is_correct}/>)
+            const q = []
+            q.push(<Question text = {data[1].question}/>)
+            for (const option of data[1].answers) 
+            {
+                ans.push(
+            <PossibleAnswers key = {option.id} name = {option.name} isCorrect = {option.is_correct}/>)
             }
             setAnswers(ans)
+            setQuest(q)
+            console.log(q)
         })
     
     }, 
@@ -45,9 +53,14 @@ function Answers(props) {
 
     return (
         <div>
-            <ul>
+            <div>
+                {quest}
+            </div>
+            <div>
+            <ol>
                 {answers}
-            </ul>
+            </ol>
+        </div>
         </div>
     )
 }
@@ -87,6 +100,7 @@ function Quiz() {
             </div>
             <div>
                 <Answers />
+
             </div>   
             <div>
                 <ScoreBoard />
@@ -101,5 +115,6 @@ ReactDOM.render(<Quiz />, document.getElementById('quiz'))
 // fetch('/something, {
 //     method: 'POST',
 //     body: Json.stringify(data),
-        // credentials: 'include'
+    // 'headers'{'Content-Type': 'application/json'
+        // credentials: 'include'}
 // }

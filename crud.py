@@ -1,6 +1,7 @@
 """CRUD operations."""
 
 from model import db, Bird, Location, Search, connect_to_db
+from random import choice
 
 
 def create_bird(speciesCode, sciName, comName, call1, searchTag):
@@ -42,7 +43,17 @@ def get_bird_by_code(speciesCode):
 
     return Bird.query.get(speciesCode)
 
-
+# def make_quiz_data():
+#     """Make an array containing Question and Answer possiblities"""
+#     birds = session['birds']
+#     quiz = []
+#     for bird in birds:
+#         q_a = {}
+#         q = "question":{"text":bird['photo1']}
+#         a = "answer": {"name": bird['comName'], "is_correct": True},
+#                         {"name": "chickadee". "is_correct": False}
+#         quiz.append(q,a)
+#     return quiz_data
 
 if __name__ == '__main__':
     from server import app

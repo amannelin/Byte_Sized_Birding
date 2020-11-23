@@ -124,18 +124,36 @@ def make_list():
 
 @app.route('/bird-quiz')
 def make_quiz():
-    bird_name = session["birds"][0]["comName"]
 
-    return render_template("bird-quiz.html", bird_name=bird_name)
+    return render_template("bird-quiz.html")
 
 #TODO : quiz! REACT?
 
+def make_quiz_data():
+    """Make an array containing Question and Answer possiblities"""
+    birds = session['birds']
+    quiz = []
+    for bird in birds:
+        q_a = {"question": bird['comName'],
+         "answers": [{"name": bird['comName'], "is_correct": True},
+                        {"name": "chickadee", "is_correct": False}]}
+        quiz.append(q_a)
+    return quiz
+
 @app.route('/quiz-data.api')
 def make_questions():
-    q_and_a = [{"id":1, "name" : "chickadee", "is_correct" : False},
-                {"id":2, "name" : "nuthatch", "is_correct" : False},
-                {"id":3, "name" : "downy", "is_correct" : False},
-                {"id":4, "name" : "Canada Goose", "is_correct" : True}]
+    q_and_a = make_quiz_data()
+    
+    # [
+    #         {"question": session['birds'][0]['comName'],
+    #             "answers":[
+    #             {"id":1, "name" : "chickadee", "is_correct" : False},
+    #             {"id":2, "name" : "nuthatch", "is_correct" : False},
+    #             {"id":3, "name" : "downy", "is_correct" : False},
+    #             {"id":4, "name" : "Canada Goose", "is_correct" : True}
+    #         ]
+    #     }
+    #     ]
 
     return jsonify(q_and_a)
 #request.args
