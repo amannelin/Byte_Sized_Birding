@@ -20,8 +20,25 @@ function Question(props) {
     return <div>{props.text}</div>
 }
 function PossibleAnswers(props){
+    const [score, setScore] = React.useState(0);
+    const checkAnswer = (isCorrect) => {
+    if (isCorrect) {
+        console.log(isCorrect)
+        setScore(score + 1);
+        }
+    else{
+        console.log(isCorrect)
+        setScore(score)
+    }
+    // if (nextQuestion < q.length) {
+	// 		setCurrentQuestion(nextQuestion);
+	// 	} else {
+	// 		<div>You scored 10/10! </div>
+	// 	}
 
-    return <li><button onClick={() => checkAnswer(props.isCorrect)}>{props.name}</button></li>
+}
+console.log(score)
+    return (<li><button onClick={() => checkAnswer(props.isCorrect)}>{props.name}</button></li>)
     
 
 }
@@ -29,6 +46,8 @@ function PossibleAnswers(props){
 function Answers(props) {
     const [answers, setAnswers] = React.useState([])
     const [quest, setQuest] = React.useState([])
+    const currentQuestion = React.useState(0);
+
     
     React.useEffect(() =>{
         fetch('/quiz-data.api')
@@ -37,19 +56,26 @@ function Answers(props) {
             console.log(data)
             const ans = []
             const q = []
-            q.push(<Question text = {data[1].question}/>)
-            for (const option of data[1].answers) 
+            q.push(
+            <Question text = {data[0].question}/>
+        )
+            for (const option of data[0].answers) 
             {
                 ans.push(
-            <PossibleAnswers key = {option.id} name = {option.name} isCorrect = {option.is_correct}/>)
+            <PossibleAnswers name = {option.name} isCorrect = {option.isCorrect}/>
+            )
             }
             setAnswers(ans)
             setQuest(q)
-            console.log(q)
-        })
-    
-    }, 
-    []);
+            const nextQuestion = currentQuestion + 1;
+            if (nextQuestion < quest.length){
+                setCurrentQuestion(nextQuestion);
+            }
+                else{ <div>Quiz Complete</div>}
+         }
+        )
+    },[]
+    )
 
     return (
         <div>
@@ -65,11 +91,12 @@ function Answers(props) {
     )
 }
 
+
 // function ScoreKeeper(){
 //     const [score, setScore] = React.useState(0);
-//     const checkAnswer = (isCorrect) => {
+//     const checkAnswer = (is_correct) => {
 //     if (isCorrect) {
-//         console.log(isCorrect)
+//         console.log(is_correct)
 //         score = score + 1;
 //     }
 // }
@@ -77,17 +104,11 @@ function Answers(props) {
 //     return score
 // }
 
-function ScoreBoard(){
+// function ScoreBoard(){
+// const score = 0
 
-    const [score, setScore] = React.useState(0);
-    const checkAnswer = (isCorrect) => {
-    if (isCorrect) {
-        console.log(isCorrect)
-        setScore(score + 1);
-    }
-}
-    return <div>Your Score is {score} </div>
-}
+//     return <div>Your Score is {score} </div>
+// }
 
 function Quiz() {
     return(
@@ -103,7 +124,7 @@ function Quiz() {
 
             </div>   
             <div>
-                <ScoreBoard />
+                {/* <ScoreBoard /> */}
             </div>     
         </div>
     )

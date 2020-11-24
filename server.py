@@ -135,8 +135,8 @@ def make_quiz_data():
     quiz = []
     for bird in birds:
         q_a = {"question": bird['comName'],
-         "answers": [{"name": bird['comName'], "is_correct": True},
-                        {"name": "chickadee", "is_correct": False}]}
+         "answers": [{"name": bird['comName'], "isCorrect": True},
+                        {"name": "chickadee", "isCorrect": False}]}
         quiz.append(q_a)
     return quiz
 
