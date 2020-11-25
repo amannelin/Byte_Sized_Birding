@@ -7,9 +7,6 @@ const Prompt =  ReactRouterDOM.Prompt;
 const Switch = ReactRouterDOM.Switch;
 const Redirect = ReactRouterDOM.Redirect;
 
-const BirdName = "Canada Goose"
-
-
 function Title() {
 return "How Well Do You Know Your Birds?"
 }
@@ -30,12 +27,6 @@ function PossibleAnswers(props){
         console.log(isCorrect)
         setScore(score)
     }
-    // if (nextQuestion < q.length) {
-	// 		setCurrentQuestion(nextQuestion);
-	// 	} else {
-	// 		<div>You scored 10/10! </div>
-	// 	}
-
 }
 console.log(score)
     return (<li><button onClick={() => checkAnswer(props.isCorrect)}>{props.name}</button></li>)
@@ -45,7 +36,7 @@ console.log(score)
 
 function Answers(props) {
     const [answers, setAnswers] = React.useState([])
-    const [quest, setQuest] = React.useState([])
+    const [question, setQuestion] = React.useState([])
     const currentQuestion = React.useState(0);
 
     
