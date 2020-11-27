@@ -4,6 +4,8 @@ from model import db, Bird, Location, Search, connect_to_db
 from random import choice
 
 
+#TODO update this and Model
+
 def create_bird(speciesCode, sciName, comName, call1, searchTag):
     """Create and return a new bird."""
 

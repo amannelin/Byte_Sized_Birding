@@ -1,132 +1,77 @@
 'use strict';
 
-const Router = ReactRouterDOM.BrowserRouter;
-const Route =  ReactRouterDOM.Route;
-const Link =  ReactRouterDOM.Link;
-const Prompt =  ReactRouterDOM.Prompt;
-const Switch = ReactRouterDOM.Switch;
-const Redirect = ReactRouterDOM.Redirect;
+function Quiz (){
+    //A Little React Quiz App
+    
+//setting up variables
+const title = "How Well Do You Know Your Birds?"
+const [score, setScore] = React.useState(0)
+const [question, setQuestion] = React.useState("Welcome!")
+const [currentQuestion, setCurrentQuestion] = React.useState(0)
+const [answerOptions, setAnswerOptions] = React.useState([{"name":'start quiz', isCorrect:false}])
+const [answers, setAnswers] = React.useState(0)
+const [showNav, setShowNav] = React.useState(false)
 
-function Title() {
-return "How Well Do You Know Your Birds?"
-}
 
+//fetching data from server
+React.useEffect(() =>{
+    fetch('/quiz-data.api')
+    .then(response => response.json())
+    .then(data => {
+        const questions = data
 
-
-function Question(props) {
-    return <div>{props.text}</div>
-}
-function PossibleAnswers(props){
-    const [score, setScore] = React.useState(0);
-    const checkAnswer = (isCorrect) => {
-    if (isCorrect) {
-        console.log(isCorrect)
-        setScore(score + 1);
+    //make answer choices
+        const ans = []
+        for (const option of answerOptions) 
+        {
+            const a = 
+            (<button onClick={() => checkAnswer(option.isCorrect)}>{option.name}</button>)
+            ans.push(a)
         }
-    else{
-        console.log(isCorrect)
-        setScore(score)
-    }
-}
-console.log(score)
-    return (<li><button onClick={() => checkAnswer(props.isCorrect)}>{props.name}</button></li>)
+    setAnswers(ans)
     
-
-}
-
-function Answers(props) {
-    const [answers, setAnswers] = React.useState([])
-    const [question, setQuestion] = React.useState([])
-    const currentQuestion = React.useState(0);
-
     
-    React.useEffect(() =>{
-        fetch('/quiz-data.api')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            const ans = []
-            const q = []
-            q.push(
-            <Question text = {data[0].question}/>
-        )
-            for (const option of data[0].answers) 
-            {
-                ans.push(
-            <PossibleAnswers name = {option.name} isCorrect = {option.isCorrect}/>
-            )
-            }
-            setAnswers(ans)
-            setQuest(q)
-            const nextQuestion = currentQuestion + 1;
-            if (nextQuestion < quest.length){
-                setCurrentQuestion(nextQuestion);
-            }
-                else{ <div>Quiz Complete</div>}
-         }
-        )
-    },[]
-    )
-
-    return (
-        <div>
-            <div>
-                {quest}
-            </div>
-            <div>
-            <ol>
-                {answers}
-            </ol>
-        </div>
-        </div>
-    )
+    //check answer on click
+    const checkAnswer = (isCorrect) => {
+		if (isCorrect) {
+			setScore(score + 1);
+        }
+        // else{setScore(score)}
+        
+        //advance to next question
+        const nextQuestion = currentQuestion +1;
+		if (nextQuestion < questions.length) {
+            setQuestion(<img src = {questions[nextQuestion].question}
+            alt="It looks like we couldn't find a photo for this bird"></img>);
+            setAnswerOptions(questions[nextQuestion].answers);
+            setCurrentQuestion(nextQuestion);
+        } 
+        //end of quiz
+        else{
+            setCurrentQuestion(nextQuestion)
+            setQuestion("Quiz Completed!")
+            setAnswerOptions([])
+            setShowNav(true)
+            const nextQuestion = 10
+        }
+    };
 }
+)
+},[currentQuestion])
 
 
-// function ScoreKeeper(){
-//     const [score, setScore] = React.useState(0);
-//     const checkAnswer = (is_correct) => {
-//     if (isCorrect) {
-//         console.log(is_correct)
-//         score = score + 1;
-//     }
-// }
-
-//     return score
-// }
-
-// function ScoreBoard(){
-// const score = 0
-
-//     return <div>Your Score is {score} </div>
-// }
-
-function Quiz() {
-    return(
-        <div>
-            <div>
-                <Title />
-            </div>
-            <div>
-                <Question />
-            </div>
-            <div>
-                <Answers />
-
-            </div>   
-            <div>
-                {/* <ScoreBoard /> */}
-            </div>     
-        </div>
-    )
+return(
+    <div>
+        <div id = "question-number">Question {currentQuestion}/10</div>
+            <div id = "title">{title}</div>
+                <div id = "question">{question}</div>
+                    <div id = "answers">{answers}</div>
+                        <div id = "score">Your Score is {score}</div>
+                    {showNav ? (<div id = "nav">
+                <div><a href = "/bird-list">Return to Birding List</a></div>
+            <div><a href = "/">Return to Homepage</a></div>
+        </div>):(<div></div>)}
+    </div>
+)                                  
 }
-
-
 ReactDOM.render(<Quiz />, document.getElementById('quiz'))
-
-// fetch('/something, {
-//     method: 'POST',
-//     body: Json.stringify(data),
-    // 'headers'{'Content-Type': 'application/json'
-        // credentials: 'include'}
-// }

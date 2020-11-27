@@ -127,25 +127,33 @@ def make_quiz():
 
     return render_template("bird-quiz.html")
 
-#TODO : quiz! REACT?
+
 
 def make_quiz_data():
     """Make an array containing Question and Answer possiblities"""
     birds = session['birds']
-    quiz = []
+    quiz = [{"question": "Welcome", "answers":[{"name":"Start Quiz!", "isCorrect": False}]}]
+    
+    x = 0
     for bird in birds:
-        q_a = {"question": bird['comName'],
-         "answers": [{"name": bird['comName'], "isCorrect": True},
-                        {"name": "chickadee", "isCorrect": False}]}
-        quiz.append(q_a)
+    
+        r = random.sample([i for i in range(0,9) if i != x], k=3)
+        answers = [{"name": bird['comName'], "isCorrect": True}, 
+                    {"name": birds[r[0]]['comName'], "isCorrect": False}, 
+                    {"name": birds[r[1]]['comName'], "isCorrect": False}, 
+                    {"name":birds[r[2]]["comName"], "isCorrect":False}]
+        answers_shuffled = random.shuffle(answers)
+        x = x + 1
+        quiz.append({"question": bird['photo1'], "answers": answers})
     return quiz
+#TODO : Work on randomization of answer options! use set somehow? pop?
 
 @app.route('/quiz-data.api')
 def make_questions():
     q_and_a = make_quiz_data()
     
     # [
-    #         {"question": session['birds'][0]['comName'],
+    #         {"question": session['birds'][0]['photo1'],
     #             "answers":[
     #             {"id":1, "name" : "chickadee", "is_correct" : False},
     #             {"id":2, "name" : "nuthatch", "is_correct" : False},
