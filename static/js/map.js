@@ -1,4 +1,4 @@
-// TODO: SWITCH SEARCH TO AUTOCOMPLETE
+// TODO: stop redirect if ebird call returns nothing
 // TODO: WAITING MESSAGE
 // let autocomplete;
 

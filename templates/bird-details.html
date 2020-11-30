@@ -1,23 +1,44 @@
 {% extends 'base.html' %}
 {% block title %}Bird Details{% endblock %}
 {% block body %}
+<div class = "container-fluid"></div>
 <h4><a href="/bird-list">Back to Birding List</a></h4>
 <h2>Bird Details</h2>
 
-<div class = bird_details>
-    <div class = com_name>Common Name: {{ bird['comName'] }}</div>
-    <div class = sci_name>Scientific Name: {{ bird['sciName'] }}</div>
-    <div class = loc_name>Species Code: {{ bird['speciesCode'] }}</div>
-    <div class = img><img src = "{{ bird['photo2'] }}"
-        alt="It looks like we couldn't find a photo for this bird"></img></div>
+
+
+<div class = "row">
+    <div class = "col-12 col-md-4">
+        <div class = img><img src = "{{ bird['photo2'] }}"
+            alt="It looks like we couldn't find a photo for this bird"></img></div>
+    </div>
+    <div class = "col-12 col-md-4">
         <div class = img><img src = "{{ bird['photo3'] }}"
+            class="img-fluid" alt="It looks like we couldn't find another photo for this bird"></img></div>
+    </div>
+    <div class = "col-12 col-md-4">
+        <div class = img><img src = "{{ bird['photo4'] }}"
             alt="It looks like we couldn't find another photo for this bird"></img></div>
-            <div class = img><img src = "{{ bird['photo4'] }}"
-                alt="It looks like we couldn't find another photo for this bird"></img></div>
-    <div class = bird_call><iframe src= "{{ bird['call1'] }}" scrolling='no' frameborder='0' 
-            width='340' height='115' longdesc="bird call"></iframe></div>
-    <div class = ebird>See the <a href="https://ebird.org/species/{{bird['speciesCode']}}" target = "_blank">Ebird</a> page for this species for more information!</div>
+    </div>
+</div>  
+
+<div class = row>
+    <div class = "col-12 col-md-4 offset-4">
+        <div class = bird_details>
+            <div class = com_name>Common Name: {{ bird['comName'] }}</div>
+            <div class = sci_name>Scientific Name: {{ bird['sciName'] }}</div>
+            <div class = loc_name>Species Code: {{ bird['speciesCode'] }}</div>
+        </div>
+        <div class = bird_call><iframe src= "{{ bird['call1'] }}" scrolling='no' frameborder='0' 
+            width='340' height='115' longdesc="bird call"></iframe>
+        </div>
+        <div class = ebird>See the <a href="https://ebird.org/species/{{bird['speciesCode']}}" target = "_blank">Ebird</a> 
+            page for this species for more information!
+        </div>
+    </div>
 </div>
+
+
 {% endblock %}
 {% block after_body %}
 <footer id="footer">
@@ -25,4 +46,5 @@
     <div><a href = "www.ebird.org">This Product uses the eBird Api from the Cornell Lab of Ornithology</a></div>
     <div><a href = "www.xeno-canto.org">This Product uses the Xeno-Canto API from the Xeno-Canto Foundation</a></div>
 </footer>
+</div>
 {% endblock %}

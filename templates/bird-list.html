@@ -2,14 +2,24 @@
 {% extends 'base.html' %}
 {% block title %}Birding List{% endblock %}
 {% block body %}
-<h4><a href="/printable-list">Printable List</a></h4>
-<h2>Watch For These Feathered Friends!</h2>
-<h3>Click on any bird name for more information</h3>
-<h3><a href = "/bird-quiz">Take a Quiz based on these Species!</a></h3>
-<section id = "birding list">
+<div class="container-fluid">
+<header>
+        <div><h4><a href="/printable-list">Printable List</a></h4></div>
+ 
+        <div><h2>Watch For These Feathered Friends!</h2><div>
 
+        <div><h3>Click on any bird name for more information</h3></div>
+
+        <div><h3><a href = "/bird-quiz">Take a Quiz based on these Species!</a></h3></div>
+</header>
+
+
+<section id = "birding list">
+<div class="row">
 {% for bird in session['birds'] %}
 
+
+<div class = "col-12 col-md-6 col-lg-4">
     <div class = bird_info>
         <div class = com_name><a href = "/bird-details/{{bird['speciesCode']}}">{{ bird['comName'] }}</a></div>
         <div class = sci_name>{{ bird['sciName'] }}</div>
@@ -18,12 +28,19 @@
             alt="It looks like we couldn't find a photo for this bird"></img></div>
         <div class = bird_call><iframe src= {{ bird['call1'] }} scrolling='no' frameborder='0' width='340' height='115' longdesc="It looks like we couldn't find a call for this bird"></iframe></div>
   </div>
+</div>
+
 {% endfor %}
+</div>
 
 </section>
+
+<div class="row">
     <footer id="footer">
         <div><a href = "www.flickr.com">This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</a></div>
         <div><a href = "www.ebird.org">This Product uses the eBird Api from the Cornell Lab of Ornithology</a></div>
         <div><a href = "www.xeno-canto.org">This Product uses the Xeno-Canto API from the Xeno-Canto Foundation</a></div>
     </footer>
+</div>
+    </div>
 {% endblock %}
