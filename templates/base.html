@@ -15,18 +15,23 @@
     
     </head>
     <body>
-    
-    {% block body %}{% endblock %}
-    <footer id="footer">
-      <div><a href = "www.flickr.com">This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</a></div>
-      <div><a href = "www.ebird.org">This Product uses the eBird Api from the Cornell Lab of Ornithology</a></div>
-      <div><a href = "www.xeno-canto.org">This Product uses the Xeno-Canto API from the Xeno-Canto Foundation</a></div>
-  </footer>
-    {% block after_body %}{% endblock %}
-    <!-- jQuery and popper -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+      <div id="page-container">
+        <div id="content-wrap">
+          {% block body %}{% endblock %}
+          <div id = "footer-wrap">
+            <footer id="footer">
+              <div><a href = "www.flickr.com">This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</a></div>
+              <div><a href = "www.ebird.org">This Product uses the eBird Api from the Cornell Lab of Ornithology</a></div>
+              <div><a href = "www.xeno-canto.org">This Product uses the Xeno-Canto API from the Xeno-Canto Foundation</a></div>
+            </footer>
+          </div>
+          {% block after_body %}{% endblock %}
+          <!-- jQuery and popper -->
+          <script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+          crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+      </div>
+    </div>
   </body>
 </html>

@@ -200,6 +200,23 @@ grhowl	Bubo virginianus	Great Horned Owl	great+horned+owl	https://www.xeno-canto
 gresca	Aythya marila	Greater Scaup	greater+scaup	https://www.xeno-canto.org/322883/embed?simple=1
 hergul	Larus argentatus	Herring Gull	herring+gull	https://www.xeno-canto.org/603672/embed?simple=1
 comloo	Gavia immer	Common Loon	common+loon	https://www.xeno-canto.org/488030/embed?simple=1
+pinsis	Spinus pinus	Pine Siskin	pine+siskin	https://www.xeno-canto.org/592847/embed?simple=1
+ameoys	Haematopus palliatus	American Oystercatcher	american+oystercatcher	https://www.xeno-canto.org/573224/embed?simple=1
+bkbplo	Pluvialis squatarola	Black-bellied Plover	black-bellied+plover	\N
+semplo	Charadrius semipalmatus	Semipalmated Plover	semipalmated+plover	https://www.xeno-canto.org/597879/embed?simple=1
+willet1	Tringa semipalmata	Willet	willet	https://www.xeno-canto.org/531988/embed?simple=1
+lbbgul	Larus fuscus	Lesser Black-backed Gull	lesser+black-backed+gull	https://www.xeno-canto.org/584010/embed?simple=1
+anhing	Anhinga anhinga	Anhinga	anhinga	https://www.xeno-canto.org/311149/embed?simple=1
+commer	Mergus merganser	Common Merganser	common+merganser	https://www.xeno-canto.org/591663/embed?simple=1
+comred	Acanthis flammea	Common Redpoll	common+redpoll	https://www.xeno-canto.org/602191/embed?simple=1
+brdowl	Strix varia	Barred Owl	barred+owl	https://www.xeno-canto.org/593665/embed?simple=1
+comgol	Bucephala clangula	Common Goldeneye	common+goldeneye	https://www.xeno-canto.org/590646/embed?simple=1
+horgre	Podiceps auritus	Horned Grebe	horned+grebe	https://www.xeno-canto.org/590661/embed?simple=1
+coohaw	Accipiter cooperii	Cooper's Hawk	cooper's+hawk	https://www.xeno-canto.org/597276/embed?simple=1
+calgul	Larus californicus	California Gull	california+gull	https://www.xeno-canto.org/362781/embed?simple=1
+grbher3	Ardea herodias	Great Blue Heron	great+blue+heron	https://www.xeno-canto.org/597965/embed?simple=1
+reshaw	Buteo lineatus	Red-shouldered Hawk	red-shouldered+hawk	https://www.xeno-canto.org/568355/embed?simple=1
+acowoo	Melanerpes formicivorus	Acorn Woodpecker	acorn+woodpecker	https://www.xeno-canto.org/563021/embed?simple=1
 \.
 
 

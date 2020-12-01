@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Bird Details{% endblock %}
 {% block body %}
-<div class = "container-fluid"></div>
-<h4><a href="/bird-list">Back to Birding List</a></h4>
-<h2>Bird Details</h2>
+<div class = "container-fluid">
+<header>
+    <h4><a href="/bird-list">Back to Birding List</a></h4>
+    <h2>Bird Details</h2>
+</header>
 
 
 
@@ -21,7 +23,6 @@
         <div class = center-img><img src = "{{ bird['photo4'] }}"
             alt="It looks like we couldn't find another photo for this bird"></img></div>
     </div>
-    <!-- </div> -->
 </div>  
 
 <div class = row>
@@ -39,6 +40,6 @@
         </div>
     </div>
 </div>
-
+</div>
 
 {% endblock %}

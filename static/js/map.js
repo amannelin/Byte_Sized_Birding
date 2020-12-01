@@ -1,6 +1,5 @@
 // TODO: stop redirect if ebird call returns nothing
 // TODO: WAITING MESSAGE
-// let autocomplete;
 
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {

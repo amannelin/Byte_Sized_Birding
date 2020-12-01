@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Birding List{% endblock %}
+{% block title %}Bird Search{% endblock %}
 {% block head %}
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -14,14 +14,15 @@
     <script src="static/js/map.js"></script>
 {% endblock %}
 {% block body %}
+<header>
 <h2>Who's Flying Your Way?</h2>
 <h3>Enter An Address To See The Most Recent Birds Spotted Nearby:</h3>
-  <div></div>
+</header>
     <div id="get birds"></div>
       <div id="floating-panel">
       <input id="address" type="textbox"/>
       <input id="submit" type="button" value="Search For Birds" />
-      </div>
+    </div>
   <div id="map"></div>
-  
+
 {% endblock %}

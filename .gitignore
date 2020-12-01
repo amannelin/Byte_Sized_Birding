@@ -5,3 +5,4 @@ secrets.sh
 __pycache__
 .pyc
 .vscode/
+.sql

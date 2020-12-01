@@ -1,4 +1,6 @@
-<html>
+{% extends 'base.html' %}
+{% block title %}Bird Quiz{% endblock %}
+{% block head %}
 <script type="text/javascript"></script>
 <!-- Load React -->
 <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
@@ -11,3 +13,5 @@
 <!-- my js file -->
 <script src="/static/js/bird_quiz.jsx" type= text/babel></script>
 </html>
+
+{% endblock %}

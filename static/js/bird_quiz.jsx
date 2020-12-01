@@ -61,8 +61,11 @@ React.useEffect(() =>{
 
 
 return(
-    <div>
-        <div id = "question-number">Question {currentQuestion}/10</div>
+<div classname = "container-fluid">
+    <div classname = "row">
+        <div classname = "col-6 offset-6">
+            <div id = "question-number">Question {currentQuestion}/10</div>
+        </div>
             <div id = "title">{title}</div>
                 <div id = "question">{question}</div>
                     <div id = "answers">{answers}</div>
@@ -72,6 +75,7 @@ return(
             <div><a href = "/">Return to Homepage</a></div>
         </div>):(<div></div>)}
     </div>
+</div>
 )                                  
 }
 ReactDOM.render(<Quiz />, document.getElementById('quiz'))
