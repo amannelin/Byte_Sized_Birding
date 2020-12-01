@@ -33,7 +33,7 @@ class Location(db.Model):
     longitude = db.Column(db.Float, nullable=False)
     radius = db.Column(db.Integer, default=25)
     time = db.Column(db.Integer, default=14)
-    num_results = db.Column(db.Integer, default=10)
+    num_results = db.Column(db.Integer, default=12)
 
     # location_birds = a list of location search objects
 
@@ -57,7 +57,7 @@ class Search(db.Model):
     def __repr__(self):
         return f'<Search id={self.location_birds_id}>'
 
-def connect_to_db(flask_app, db_uri='postgresql:///locate_birds', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///locate_birds', echo=False):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

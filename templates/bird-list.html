@@ -24,23 +24,18 @@
         <div class = com_name><a href = "/bird-details/{{bird['speciesCode']}}">{{ bird['comName'] }}</a></div>
         <div class = sci_name>{{ bird['sciName'] }}</div>
         <div class = loc_name>Seen at: {{ bird['locName'] }}</div>
+    </div>
         <div class = img><img src = "{{ bird['photo1'] }}"
-            alt="It looks like we couldn't find a photo for this bird"></img></div>
-        <div class = bird_call><iframe src= {{ bird['call1'] }} scrolling='no' frameborder='0' width='340' height='115' longdesc="It looks like we couldn't find a call for this bird"></iframe></div>
-  </div>
-</div>
+            alt="It looks like we couldn't find a photo for this bird"></img>
+        </div>
+            <div class = bird_call><iframe src= {{ bird['call1'] }} scrolling='no' frameborder='0' width='340' height='115' longdesc="It looks like we couldn't find a call for this bird"></iframe>
+        </div>
+  
+    </div>
 
 {% endfor %}
 </div>
 
 </section>
 
-<div class="row">
-    <footer id="footer">
-        <div><a href = "www.flickr.com">This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</a></div>
-        <div><a href = "www.ebird.org">This Product uses the eBird Api from the Cornell Lab of Ornithology</a></div>
-        <div><a href = "www.xeno-canto.org">This Product uses the Xeno-Canto API from the Xeno-Canto Foundation</a></div>
-    </footer>
-</div>
-    </div>
 {% endblock %}

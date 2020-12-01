@@ -9,12 +9,13 @@
 <h4>
     <div>
         <form>
-        <input type="button" value="Print this page" onClick="window.print()">
+            <input type="button" value="Print this page" onClick="window.print()">
         </form>
     </div>
 </h4>
 <section id = "printable birding list"></section>
 <h2>Watch For These Feathered Friends!</h2>
+
 <ol>
 {% for bird in session['birds'] %}
     <li class = printable>
@@ -26,6 +27,7 @@
     </li>
 {% endfor %}
 </ol>
+
 </section>
-<footer id="footer">"This product uses the Ebird API"</footer>
+
 {% endblock %}

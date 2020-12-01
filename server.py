@@ -23,22 +23,6 @@ app = Flask(__name__)
 app.secret_key = b'show/me?the#birds!'
 
 
-@app.route('/save-birds')
-def save_birds_to_db():
-    for bird in session['birds']:
-        in_db = crud.get_bird_by_code(bird['speciesCode'])
-        if in_db:
-            pass
-        else:
-            speciesCode=bird['speciesCode']
-            sciName=bird['sciName']
-            comName=bird['comName']
-            call1=bird['call1']
-            searchTag = bird['searchTag']
-            crud.create_bird(speciesCode, sciName, comName, call1, searchTag)
-    
-    return "successfully added new birds to database!"
-
 @app.route('/')
 def show_homepage():
     """display homepage"""
@@ -46,6 +30,7 @@ def show_homepage():
     return render_template('home.html')
 
 #TODO Flash message or other indication that something is happening during ebird request
+
 
 @app.route('/ebird-call', methods=['GET', 'POST'])
 def get_birds_by_loc():
@@ -56,9 +41,19 @@ def get_birds_by_loc():
             return "The birds are flocking in!"
     except:
         return "Unable to find sightings for this location."
+
+def get_birds():
+    """fetches 12 bird objects from ebird API"""
+
+    lat = request.form.get("lat")
+    lng = request.form.get("lng")
+    session['birds'] = get_nearby_observations(KEY, lat, lng, dist=10, back=2, max_results=12)
+    
+    return session['birds']
         
 
 #TODO:  stay on home page if no sightings     
+
 
 @app.route('/flickr-call')
 def add_images():
@@ -73,107 +68,6 @@ def add_images():
         session['birds'] = session['birds']
 
     return "Added Photos, please wait while we add bird songs"
-    
-@app.route('/xeno-canto-call')
-def add_calls():
-    """use xeno-canto api to add vocalizations to session birds"""
-    for bird in session['birds']:
-        in_db = crud.get_bird_by_code(bird['speciesCode'])
-        if in_db:
-            bird['call1']=in_db.call1
-
-        else:
-            bird_name = bird['searchTag']
-            link = get_call_link(bird_name)
-            bird['call1'] = link
-
-        session['birds'] = session['birds']
-
-    return "Added Songs!"
-
-
-#FIXME : link issue!
-#TODO : have bird list load first and add calls as they are returned. sloooooow
-
-
-@app.route('/bird-list')
-def show_bird_list():
-    """display birding list"""
-    
-
-    return render_template("bird-list.html")
-
-@app.route('/bird-details/<speciesCode>')
-def show_details(speciesCode):
-    """display more images, information, for bird from birding list"""
-
-    bird = crud.get_bird_by_code(speciesCode)
-    links = get_three_images(bird.searchTag)
-    bird.photo2=links[1]
-    bird.photo3=links[2]
-    bird.photo4=links[3]
-
-    return render_template("bird-details.html", bird=bird)
-
-@app.route('/printable-list')
-def make_list():
-    """a printable version of the location-based list"""
-
-    return render_template("printable-list.html")
-
-
-@app.route('/bird-quiz')
-def make_quiz():
-
-    return render_template("bird-quiz.html")
-
-
-
-def make_quiz_data():
-    """Make an array containing Question and Answer possiblities"""
-    birds = session['birds']
-    quiz = [{"question": "Welcome", "answers":[{"name":"Start Quiz!", "isCorrect": False}]}]
-    
-    x = 0
-    for bird in birds:
-    
-        r = random.sample([i for i in range(0,9) if i != x], k=3)
-        answers = [{"name": bird['comName'], "isCorrect": True}, 
-                    {"name": birds[r[0]]['comName'], "isCorrect": False}, 
-                    {"name": birds[r[1]]['comName'], "isCorrect": False}, 
-                    {"name":birds[r[2]]["comName"], "isCorrect":False}]
-        answers_shuffled = random.shuffle(answers)
-        x = x + 1
-        quiz.append({"question": bird['photo1'], "answers": answers})
-    return quiz
-#TODO : Work on randomization of answer options! use set somehow? pop?
-
-@app.route('/quiz-data.api')
-def make_questions():
-    q_and_a = make_quiz_data()
-    
-    # [
-    #         {"question": session['birds'][0]['photo1'],
-    #             "answers":[
-    #             {"id":1, "name" : "chickadee", "is_correct" : False},
-    #             {"id":2, "name" : "nuthatch", "is_correct" : False},
-    #             {"id":3, "name" : "downy", "is_correct" : False},
-    #             {"id":4, "name" : "Canada Goose", "is_correct" : True}
-    #         ]
-    #     }
-    #     ]
-
-    return jsonify(q_and_a)
-#request.args
-
-def get_birds():
-    """fetches 10 bird objects form ebird API"""
-
-    lat = request.form.get("lat")
-    lng = request.form.get("lng")
-    session['birds'] = get_nearby_observations(KEY, lat, lng, dist=10, back=2, max_results=10)
-    
-    return session['birds']
 
 def make_search_tag(bird):
     """gets bird common name from json and parses it into correct form for api calls"""
@@ -199,6 +93,81 @@ def get_image_link(bird_name):
 
 #TODO: image attribution!
 
+    
+
+@app.route('/xeno-canto-call')
+def add_calls():
+    """use xeno-canto api to add vocalizations to session birds"""
+
+    for bird in session['birds']:
+        in_db = crud.get_bird_by_code(bird['speciesCode'])
+        if in_db:
+            bird['call1']=in_db.call1
+
+        else:
+            bird_name = bird['searchTag']
+            link = get_call_link(bird_name)
+            bird['call1'] = link
+
+        session['birds'] = session['birds']
+
+    return "Added Songs!"
+
+
+def get_call_link(bird_name):
+    """use xeno-canto api to get a vocalization for a given bird"""
+
+    response = requests.get(f"https://www.xeno-canto.org/api/2/recordings?query={bird_name}+q:A+len_lt:20")
+    try:
+        url = response.json()['recordings'][0]['url']
+        link = f"https:{url}/embed?simple=1"
+    except:
+        link = None
+    
+    return link
+
+#FIXME : link issue!
+
+
+@app.route('/save-birds')
+def save_birds_to_db():
+    """add birds to database for improved performance"""
+
+    for bird in session['birds']:
+        in_db = crud.get_bird_by_code(bird['speciesCode'])
+        if in_db:
+            pass
+        else:
+            speciesCode=bird['speciesCode']
+            sciName=bird['sciName']
+            comName=bird['comName']
+            call1=bird['call1']
+            searchTag = bird['searchTag']
+            crud.create_bird(speciesCode, sciName, comName, call1, searchTag)
+    
+    return "successfully added new birds to database!"
+
+
+@app.route('/bird-list')
+def show_bird_list():
+    """display birding list"""
+    
+
+    return render_template("bird-list.html")
+
+
+@app.route('/bird-details/<speciesCode>')
+def show_details(speciesCode):
+    """display more images, information, for bird from birding list"""
+
+    bird = crud.get_bird_by_code(speciesCode)
+    links = get_three_images(bird.searchTag)
+    bird.photo2=links[1]
+    bird.photo3=links[2]
+    bird.photo4=links[3]
+
+    return render_template("bird-details.html", bird=bird)
+
 def get_three_images(bird_name):
     """use flicker api to get three images for bird detail page"""
     
@@ -213,17 +182,60 @@ def get_three_images(bird_name):
 
     return links
 
-def get_call_link(bird_name):
-    """use xeno-canto api to get a vocalization for a given bird"""
 
-    response = requests.get(f"https://www.xeno-canto.org/api/2/recordings?query={bird_name}+q:A+len_lt:20")
-    try:
-        url = response.json()['recordings'][0]['url']
-        link = f"https:{url}/embed?simple=1"
-    except:
-        link = None
+
+@app.route('/printable-list')
+def make_list():
+    """a printable version of the location-based list"""
+
+    return render_template("printable-list.html")
+
+
+@app.route('/bird-quiz')
+def make_quiz():
+    """a quiz on 10 species from the birding list"""
+
+    return render_template("bird-quiz.html")
+
+
+@app.route('/quiz-data.api')
+def make_questions():
+    """local api for quiz data json"""
     
-    return link
+    q_and_a = make_quiz_data()
+    
+    # [
+    #         {"question": session['birds'][0]['photo1'],
+    #             "answers":[
+    #             {"id":1, "name" : "chickadee", "is_correct" : False},
+    #             {"id":2, "name" : "nuthatch", "is_correct" : False},
+    #             {"id":3, "name" : "downy", "is_correct" : False},
+    #             {"id":4, "name" : "Canada Goose", "is_correct" : True}
+    #         ]
+    #     }
+    #     ]
+
+    return jsonify(q_and_a)
+
+def make_quiz_data():
+    """Make an array containing Question and Answer possiblities"""
+    
+    birds = session['birds']
+    quiz = [{"question": "Welcome", "answers":[{"name":"Start Quiz!", "isCorrect": False}]}]
+    
+    x = 0
+   
+    for bird in birds:
+        if x < 10:
+            r = random.sample([i for i in range(0,11) if i != x], k=3)
+            answers = [{"name": bird['comName'], "isCorrect": True}, 
+                        {"key": 1, "name": birds[r[0]]['comName'], "isCorrect": False}, 
+                        {"key": 2, "name": birds[r[1]]['comName'], "isCorrect": False}, 
+                        {"key": 3, "name":birds[r[2]]["comName"], "isCorrect":False}]
+            answers_shuffled = random.shuffle(answers)
+            x = x + 1
+            quiz.append({"question": bird['photo1'], "answers": answers})
+    return quiz
 
 
         

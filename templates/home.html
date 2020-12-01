@@ -4,29 +4,24 @@
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <!-- TODO : FIX API KEY  -->
+    <!-- GOOGLE MAPS -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyKkTUiF1et9EtNjBxCHYAOAk7sWF21gM&callback=initMap&libraries=places&v=weekly"
-      defer
-    ></script>
-    <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
+      defer>
+    </script>
+    <!-- <link rel="stylesheet" type="text/css" href="static/css/styles.css" /> -->
+
     <script src="static/js/map.js"></script>
 {% endblock %}
 {% block body %}
 <h2>Who's Flying Your Way?</h2>
-<h3>Enter An Address To See The Ten Most Recent Birds Spotted Nearby:</h3>
+<h3>Enter An Address To See The Most Recent Birds Spotted Nearby:</h3>
   <div></div>
-  <div id="get birds"></div>
-  <div id="floating-panel">
-    <input id="address" type="textbox"/>
-    <input id="submit" type="button" value="Search For Birds" />
-  </div>
+    <div id="get birds"></div>
+      <div id="floating-panel">
+      <input id="address" type="textbox"/>
+      <input id="submit" type="button" value="Search For Birds" />
+      </div>
   <div id="map"></div>
   
-{% endblock %}
-{% block after_body %}
-<footer id="footer">
-    <div><a href = "www.flickr.com">This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</a></div>
-    <div><a href = "www.ebird.org">This Product uses the eBird Api from the Cornell Lab of Ornithology</a></div>
-    <div><a href = "www.xeno-canto.org">This Product uses the Xeno-Canto API from the Xeno-Canto Foundation</a></div>
-</footer>
 {% endblock %}
