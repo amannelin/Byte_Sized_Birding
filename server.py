@@ -27,7 +27,7 @@ app.secret_key = b'show/me?the#birds!'
 def show_homepage():
     """display homepage"""
 
-    return render_template('home.html')
+    return render_template('map.html')
 
 #TODO Flash message or other indication that something is happening during ebird request
 
@@ -204,16 +204,6 @@ def make_questions():
     
     q_and_a = make_quiz_data()
     
-    # [
-    #         {"question": session['birds'][0]['photo1'],
-    #             "answers":[
-    #             {"id":1, "name" : "chickadee", "is_correct" : False},
-    #             {"id":2, "name" : "nuthatch", "is_correct" : False},
-    #             {"id":3, "name" : "downy", "is_correct" : False},
-    #             {"id":4, "name" : "Canada Goose", "is_correct" : True}
-    #         ]
-    #     }
-    #     ]
 
     return jsonify(q_and_a)
 
@@ -237,7 +227,10 @@ def make_quiz_data():
             quiz.append({"question": bird['photo1'], "answers": answers})
     return quiz
 
+@app.route("/about")
+def about_page():
 
+    retrurn render_template("about.html")
         
 
 if __name__ == '__main__':

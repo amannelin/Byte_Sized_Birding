@@ -1,5 +1,6 @@
 #map {
   height: 50%;
+  position: fixed;
 }
 /* Optional: Makes the sample page fill the window. */
 
