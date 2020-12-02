@@ -61,9 +61,9 @@ React.useEffect(() =>{
 
 
 return(
-<div classname = "container-fluid">
-    <div classname = "row">
-        <div classname = "column-6 offset-6">
+<div class = "container-fluid">
+    <div class = "row">
+        <div class = "col-6 offset-3">
             <div id = "question-number">Question {currentQuestion}/10</div>
                 <div id = "title">{title}</div>
                     <div id = "question">{question}</div>

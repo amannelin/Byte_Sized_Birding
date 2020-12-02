@@ -75,8 +75,14 @@ a:hover {
   
 button{
     margin: 5px;
-    background-color: #3E78B2;
+    background-color:#28495E;
     color:#D77E59;
+    outline: none;
+    box-shadow:none;
+}
+button:focus{
+  outline:none;
+  box-shadow:none;
 }
 
 .bird_info{
