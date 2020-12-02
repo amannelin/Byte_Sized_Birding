@@ -9,9 +9,14 @@
 <script crossorigin src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
 <!-- babel -->
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-<div id = "quiz"></div>
+
 <!-- my js file -->
 <script src="/static/js/bird_quiz.jsx" type= text/babel></script>
-</html>
 
+<header>
+    <h2>How Well Do You Know Your Birds?</h2>
+</header>
+{% endblock %}
+{% block body%}
+<div id = "quiz"></div>
 {% endblock %}

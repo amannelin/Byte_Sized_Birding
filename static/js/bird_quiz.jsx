@@ -4,7 +4,7 @@ function Quiz (){
     //A Little React Quiz App
     
 //setting up variables
-const title = "How Well Do You Know Your Birds?"
+const title = "Match The Correct Name To An Image Of A Bird From Your List:"
 const [score, setScore] = React.useState(0)
 const [question, setQuestion] = React.useState("Welcome!")
 const [currentQuestion, setCurrentQuestion] = React.useState(0)
@@ -63,17 +63,17 @@ React.useEffect(() =>{
 return(
 <div classname = "container-fluid">
     <div classname = "row">
-        <div classname = "col-6 offset-6">
+        <div classname = "column-6 offset-6">
             <div id = "question-number">Question {currentQuestion}/10</div>
+                <div id = "title">{title}</div>
+                    <div id = "question">{question}</div>
+                        <div id = "answers">{answers}</div>
+                            <div id = "score">Your Score is {score}</div>
+                        {showNav ? (<div id = "nav">
+                    <div><a href = "/bird-list">Return to Birding List</a></div>
+                <div><a href = "/">Return to Homepage</a></div>
+            </div>):(<div></div>)}
         </div>
-            <div id = "title">{title}</div>
-                <div id = "question">{question}</div>
-                    <div id = "answers">{answers}</div>
-                        <div id = "score">Your Score is {score}</div>
-                    {showNav ? (<div id = "nav">
-                <div><a href = "/bird-list">Return to Birding List</a></div>
-            <div><a href = "/">Return to Homepage</a></div>
-        </div>):(<div></div>)}
     </div>
 </div>
 )                                  
