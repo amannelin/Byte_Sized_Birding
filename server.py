@@ -230,7 +230,7 @@ def make_quiz_data():
 @app.route("/about")
 def about_page():
 
-    retrurn render_template("about.html")
+    return render_template("about.html")
         
 
 if __name__ == '__main__':
