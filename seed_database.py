@@ -8,8 +8,8 @@ import crud
 import model
 import server
 
-os.system('dropdb locate_birds')
-os.system('createdb locate_birds')
+os.system('dropdb bird_list')
+os.system('createdb bird_list')
 
 model.connect_to_db(server.app)
 model.db.create_all()
@@ -25,5 +25,5 @@ for bird in bird_data:
         bird['call1'],
         bird['searchTag'])
 
-    db_bird = crud.create_bird(speciesCode, sciName, comName, song1, searchTag)
+    db_bird = crud.create_bird(speciesCode, sciName, comName, call1, searchTag)
     birds_in_db.append(db_bird)
