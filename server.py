@@ -214,17 +214,23 @@ def make_quiz_data():
     quiz = [{"question": "Welcome", "answers":[{"name":"Start Quiz!", "isCorrect": False}]}]
     
     x = 0
+    ran = 11
    
     for bird in birds:
-        if x < 10:
-            r = random.sample([i for i in range(0,11) if i != x], k=3)
-            answers = [{"name": bird['comName'], "isCorrect": True}, 
-                        {"key": 1, "name": birds[r[0]]['comName'], "isCorrect": False}, 
-                        {"key": 2, "name": birds[r[1]]['comName'], "isCorrect": False}, 
-                        {"key": 3, "name":birds[r[2]]["comName"], "isCorrect":False}]
-            answers_shuffled = random.shuffle(answers)
+        if bird['photo1']:
+            if x < 10:
+                r = random.sample([i for i in range(0, ran) if i != x], k=3)
+                answers = [{"name": bird['comName'], "isCorrect": True}, 
+                            {"key": 1, "name": birds[r[0]]['comName'], "isCorrect": False}, 
+                            {"key": 2, "name": birds[r[1]]['comName'], "isCorrect": False}, 
+                            {"key": 3, "name":birds[r[2]]["comName"], "isCorrect":False}]
+                answers_shuffled = random.shuffle(answers)
+                x = x + 1
+                quiz.append({"question": bird['photo1'], "answers": answers})
+        else: 
             x = x + 1
-            quiz.append({"question": bird['photo1'], "answers": answers})
+            ran = ran + 1
+
     return quiz
 
 @app.route("/about")

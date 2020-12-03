@@ -4,7 +4,7 @@ function Quiz (){
     //A Little React Quiz App
     
 //setting up variables
-const title = "Match The Correct Name To An Image Of A Bird From Your List:"
+const title = "Match the Correct Name to the Bird Photo:"
 const [score, setScore] = React.useState(0)
 const [question, setQuestion] = React.useState("Welcome!")
 const [currentQuestion, setCurrentQuestion] = React.useState(0)
@@ -25,7 +25,7 @@ React.useEffect(() =>{
         for (const option of answerOptions) 
         {
             const a = 
-            (<button onClick={() => checkAnswer(option.isCorrect)}>{option.name}</button>)
+            (<button onClick={() => checkAnswer(option.isCorrect)} class= "quizbutton">{option.name}</button>)
             ans.push(a)
         }
     setAnswers(ans)
@@ -42,7 +42,7 @@ React.useEffect(() =>{
         const nextQuestion = currentQuestion +1;
 		if (nextQuestion < questions.length) {
             setQuestion(<img src = {questions[nextQuestion].question}
-            alt="It looks like we couldn't find a photo for this bird"></img>);
+            class= "quiz-photo" alt="Photo of a Bird"></img>);
             setAnswerOptions(questions[nextQuestion].answers);
             setCurrentQuestion(nextQuestion);
         } 
@@ -63,7 +63,7 @@ React.useEffect(() =>{
 return(
 <div class = "container-fluid">
     <div class = "row">
-        <div class = "col-6 offset-3">
+        <div class = "col-6 offset-3" id="quizbox">
             <div id = "question-number">Question {currentQuestion}/10</div>
                 <div id = "title">{title}</div>
                     <div id = "question">{question}</div>

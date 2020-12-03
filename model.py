@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-"""Models for birding list app"""
+"""Database model for birding list app"""
 
 class Bird(db.Model):
     """A bird."""
@@ -16,7 +16,6 @@ class Bird(db.Model):
     searchTag = db.Column(db.String)
     call1 = db.Column(db.String)
 
-    # location_birds = a list of location search objects
 
     def __repr__(self):
         return f'<Bird bird_id={self.speciesCode} name={self.comName}>'
