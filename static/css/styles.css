@@ -1,5 +1,6 @@
 *{
   font-family: 'Arvo', serif;
+  
 }
 
 #map {
@@ -39,7 +40,7 @@ html, body {
   }
 
 header {
-  color: linen;
+  color: #6A7A82;
   padding: 20px;
   margin: 0;
   background-color: #28495E;
