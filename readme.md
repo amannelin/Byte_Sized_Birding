@@ -20,7 +20,7 @@ I am an avid birder and love observing the species in my own back yard, as well 
 #### Printable Birding List
 ![alt text](https://github.com/amannelin/Byte_Sized_Birding/blob/main/static/images/printable.png "Printable Birding List")
 #### Customized Quiz
-![alt text](https://github.com/amannelin/Byte_Sized_Birding/blob/main/static/imgages/quiz.png "Bird Quiz")
+![alt text](https://github.com/amannelin/Byte_Sized_Birding/blob/main/static/images/quiz.png "Bird Quiz")
 
 ### Technologies Used:
 **Languages:**
