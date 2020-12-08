@@ -12,15 +12,15 @@ I am an avid birder and love observing the species in my own back yard, as well 
 - A multiple-choice quiz based on the personalized birding list, built with React JS.
 
 #### Landing Page
-![alt text](https://github.com/Byte_Sized_Birding/blob/main/static/img/search.png "Landing Page")
+![alt text](https://github.com/amannelin/Byte_Sized_Birding/blob/main/static/images/Search.png "Landing Page")
 #### Birding List
-![alt text](https://github.com/Byte_Sized_Birding/blob/main/static/img/birding-list.png "Birding List")
+![alt text](https://github.com/Byte_Sized_Birding/blob/main/static/images/birding-list.png "Birding List")
 #### Bird Details Page
-![alt text](https://github.com/Byte_Sized_Birding/blob/main/static/img/details.png "Bird Details Page")
+![alt text](https://github.com/Byte_Sized_Birding/blob/main/static/images/details.png "Bird Details Page")
 #### Printable Birding List
-![alt text](https://github.com/Byte_Sized_Birding/blob/main/static/img/printable.png "Printable Birding List")
+![alt text](https://github.com/Byte_Sized_Birding/blob/main/static/images/printable.png "Printable Birding List")
 #### Customized Quiz
-![alt text](https://github.com/Byte_Sized_Birding/blob/main/static/img/quiz.png "Bird Quiz")
+![alt text](https://github.com/Byte_Sized_Birding/blob/main/static/imgages/quiz.png "Bird Quiz")
 
 ### Technologies Used:
 **Languages:**
