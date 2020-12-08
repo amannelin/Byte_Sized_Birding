@@ -29,8 +29,6 @@ def show_homepage():
 
     return render_template('map.html')
 
-#TODO Flash message or other indication that something is happening during ebird request
-
 
 @app.route('/ebird-call', methods=['GET', 'POST'])
 def get_birds_by_loc():
@@ -50,9 +48,6 @@ def get_birds():
     session['birds'] = get_nearby_observations(KEY, lat, lng, dist=10, back=2, max_results=12)
     
     return session['birds']
-        
-
-#TODO:  stay on home page if no sightings     
 
 
 @app.route('/flickr-call')
@@ -91,8 +86,6 @@ def get_image_link(bird_name):
     
     return link
 
-#TODO: image attribution!
-
     
 
 @app.route('/xeno-canto-call')
@@ -125,8 +118,6 @@ def get_call_link(bird_name):
         link = None
     
     return link
-
-#FIXME : link issue!
 
 
 @app.route('/save-birds')

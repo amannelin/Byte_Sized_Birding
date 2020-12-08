@@ -1,5 +1,3 @@
-// TODO: stop redirect if ebird call returns nothing
-// TODO: WAITING MESSAGE
 
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -31,13 +29,13 @@ function initMap() {
         console.log(lat);
         console.log(lng);
         $.post('/ebird-call', data, (res, status) =>{
-            alert(res);
+            // alert(res);
         $.get('/flickr-call', (res) => {
-            alert(res);
+            // alert(res);
         $.get('/xeno-canto-call', (res) => {
-          alert(res);
+          // alert(res);
           $.get('/save-birds', (res) =>{
-              alert(res);
+              // alert(res);
               window.location.replace('/bird-list');
             });
           });
