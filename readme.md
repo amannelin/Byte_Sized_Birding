@@ -11,6 +11,8 @@ I am an avid birder and love observing the species in my own back yard, as well 
 - Option to see additional information on any bird.
 - A multiple-choice quiz based on the personalized birding list, built with React JS.
 
+### Demo Video: 
+
 #### Landing Page
 ![alt text](https://github.com/amannelin/Byte_Sized_Birding/blob/main/static/images/Search.png "Landing Page")
 #### Birding List
@@ -43,8 +45,8 @@ I am an avid birder and love observing the species in my own back yard, as well 
 - Flickr
 - Xeno-canto
 
-### Future Features
+### Possible Future Features:
 - Add more advanced quiz options, such as matching bird images to vocalizations.
-- If users also have an eBird user profile, they could build custom lists with images and vocalizations based on their personal checklists.
+- If users also have an eBird user profile, could build custom lists with images and vocalizations based on their personal checklists.
 
 
